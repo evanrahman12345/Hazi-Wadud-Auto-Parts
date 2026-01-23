@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Haji Wadud Parts</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .about-hero {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+        }
+        
+        .about-hero h1 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+
+        .about-hero p {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            opacity: 0.95;
+        }
+
+        .about-content {
+            max-width: 900px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        .about-section {
+            margin-bottom: 50px;
+        }
+
+        .about-section h2 {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            color: var(--text-primary);
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .about-section p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .value-card {
+            background: var(--bg-secondary);
+            padding: 30px;
+            border-radius: 12px;
+            border-left: 4px solid var(--primary-color);
+            transition: all var(--transition-normal);
+            border: 1px solid var(--border-color);
+        }
+
+        .value-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .value-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+            font-weight: 700;
+        }
+
+        .value-card p {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .about-section strong {
+            color: var(--text-primary);
+            font-weight: 700;
+        }
+
+        @media (max-width: 768px) {
+            .about-hero {
+                padding: 60px 20px;
+            }
+
+            .about-content {
+                margin: 40px auto;
+                padding: 0 16px;
+            }
+
+            .about-section {
+                margin-bottom: 40px;
+            }
+
+            .values-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .value-card {
+                padding: 24px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .about-section p {
+                font-size: 1rem;
+            }
+
+            .value-card h3 {
+                font-size: 1.2rem;
+            }
+
+            .value-card p {
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <svg class="logo-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M19 17H5C3.89543 17 3 16.1046 3 15V9C3 7.89543 3.89543 7 5 7H19C20.1046 7 21 7.89543 21 9V15C21 16.1046 20.1046 17 19 17Z" stroke="currentColor" stroke-width="2"/>
+                    <path d="M7 17V19C7 19.5523 7.44772 20 8 20H16C16.5523 20 17 19.5523 17 19V17" stroke="currentColor" stroke-width="2"/>
+                    <circle cx="7" cy="12" r="2" stroke="currentColor" stroke-width="2"/>
+                    <circle cx="17" cy="12" r="2" stroke="currentColor" stroke-width="2"/>
+                    <path d="M3 9L5 5H19L21 9" stroke="currentColor" stroke-width="2"/>
+                </svg>
+                <div class="logo-text">
+                    <span class="logo-title">Haji Wadud</span>
+                    <span class="logo-subtitle">CNG & Pick-up Parts</span>
+                </div>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="price-list.html">Price List</a></li>
+                <li><a href="about.html" class="active">About Us</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                    <svg class="sun-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="2"/>
+                        <path d="M12 1V3M12 21V23M23 12H21M3 12H1M20.485 20.485L19.071 19.071M4.929 4.929L3.515 3.515M20.485 3.515L19.071 4.929M4.929 19.071L3.515 20.485" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                    <svg class="moon-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                </button>
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="about-hero">
+        <h1>About Haji Wadud CNG & Pick-up Parts</h1>
+        <p>Your Trusted Auto Parts Partner in Bangladesh</p>
+    </div>
+
+    <div class="about-content">
+        <div class="about-section">
+            <h2>Who We Are</h2>
+            <p>Haji Wadud CNG & Pick-up Parts is a leading supplier of genuine automotive parts in Comilla, Chittagong. We specialize in providing high-quality CNG and pick-up vehicle parts to mechanics, dealers, and vehicle owners throughout Bangladesh.</p>
+            <p>With years of experience in the automotive industry, we have built a reputation for reliability, quality, and exceptional customer service. Our extensive inventory includes over 500 different parts from trusted brands like BAJAJ, MAT, VIRA, and many more.</p>
+        </div>
+
+        <div class="about-section">
+            <h2>Our Mission</h2>
+            <p>To provide authentic, affordable auto parts while maintaining the highest standards of quality and customer satisfaction. We aim to be the go-to destination for all CNG and pick-up vehicle parts needs in Bangladesh.</p>
+        </div>
+
+        <div class="about-section">
+            <h2>Our Values</h2>
+            <div class="values-grid">
+                <div class="value-card">
+                    <h3>🎯 Quality First</h3>
+                    <p>We stock only genuine parts from authorized manufacturers to ensure reliability and longevity.</p>
+                </div>
+                <div class="value-card">
+                    <h3>💰 Fair Pricing</h3>
+                    <p>Competitive wholesale and retail prices that provide value for money to all our customers.</p>
+                </div>
+                <div class="value-card">
+                    <h3>🤝 Customer Focus</h3>
+                    <p>Your satisfaction is our priority. We're here to help you find exactly what you need.</p>
+                </div>
+                <div class="value-card">
+                    <h3>⚡ Fast Service</h3>
+                    <p>Quick order processing and efficient service to minimize your vehicle downtime.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="about-section">
+            <h2>Why Choose Us</h2>
+            <p><strong>Extensive Inventory:</strong> Over 500+ parts in stock covering all major CNG and pick-up vehicle needs.</p>
+            <p><strong>Trusted Brands:</strong> We partner with reputable manufacturers like BAJAJ, VIRA, MAT, NACHI, and more.</p>
+            <p><strong>Expert Knowledge:</strong> Our experienced staff can help you identify the right parts for your specific needs.</p>
+            <p><strong>Transparent Pricing:</strong> Clear wholesale and retail pricing with no hidden costs.</p>
+            <p><strong>Convenient Location:</strong> Easily accessible location in Comilla, Chittagong serving the entire region.</p>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        <svg class="logo-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M19 17H5C3.89543 17 3 16.1046 3 15V9C3 7.89543 3.89543 7 5 7H19C20.1046 7 21 7.89543 21 9V15C21 16.1046 20.1046 17 19 17Z" stroke="currentColor" stroke-width="2"/>
+                            <path d="M7 17V19C7 19.5523 7.44772 20 8 20H16C16.5523 20 17 19.5523 17 19V17" stroke="currentColor" stroke-width="2"/>
+                            <circle cx="7" cy="12" r="2" stroke="currentColor" stroke-width="2"/>
+                            <circle cx="17" cy="12" r="2" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                        <div>
+                            <h3>Haji Wadud</h3>
+                            <p>CNG & Pick-up Parts</p>
+                        </div>
+                    </div>
+                    <p class="footer-description">Your trusted partner for genuine CNG and pick-up auto parts in Bangladesh since 2000.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="products.html">Products</a></li>
+                        <li><a href="price-list.html">Price List</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact Info</h4>
+                    <ul class="contact-info">
+                        <li>
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M17.657 16.657L13.414 20.9C13.039 21.275 12.535 21.4877 12.0083 21.4934C11.4816 21.4991 10.9734 21.2973 10.591 20.93L3.05704 13.414C2.68156 13.0391 2.47975 12.5304 2.49004 12.004V4.99604C2.49004 4.73083 2.59539 4.47647 2.78293 4.28893C2.97047 4.10139 3.22483 3.99604 3.49004 3.99604H10.498C11.024 3.99604 11.528 4.20404 11.903 4.57904L19.419 12.095C19.7933 12.4722 19.9997 12.9831 20 13.515C20.0002 14.0469 19.7943 14.5579 19.42 14.936L17.657 16.657Z" stroke="currentColor" stroke-width="2"/>
+                                <circle cx="7" cy="8" r="1" fill="currentColor"/>
+                            </svg>
+                            Comilla, Chittagong, Bangladesh
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M3 5C3 3.89543 3.89543 3 5 3H8.27924C8.70967 3 9.09181 3.27543 9.22792 3.68377L10.7257 8.17721C10.8831 8.64932 10.6694 9.16531 10.2243 9.38787L7.96701 10.5165C9.06925 12.9612 11.0388 14.9308 13.4835 16.033L14.6121 13.7757C14.8347 13.3306 15.3507 13.1169 15.8228 13.2743L20.3162 14.7721C20.7246 14.9082 21 15.2903 21 15.7208V19C21 20.1046 20.1046 21 19 21H18C9.71573 21 3 14.2843 3 6V5Z" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                            +880 1XXX-XXXXXX
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M3 8L10.8906 13.2604C11.5624 13.7083 12.4376 13.7083 13.1094 13.2604L21 8M5 19H19C20.1046 19 21 18.1046 21 17V7C21 5.89543 20.1046 5 19 5H5C3.89543 5 3 5.89543 3 7V17C3 18.1046 3.89543 19 5 19Z" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                            info@hajiwadudparts.com
+                        </li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Business Hours</h4>
+                    <ul class="business-hours">
+                        <li>
+                            <span>Saturday - Thursday</span>
+                            <strong>9:00 AM - 8:00 PM</strong>
+                        </li>
+                        <li>
+                            <span>Friday</span>
+                            <strong>Closed</strong>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Haji Wadud CNG & Pick-up Parts. All rights reserved.</p>
+                <p>Built with excellence for quality service</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Price List - Haji Wadud CNG & Pick-up Parts</title>
+    <meta name="description" content="Complete price list for CNG and pick-up vehicle parts. Wholesale and retail prices available.">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="price-list.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <svg class="logo-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M19 17H5C3.89543 17 3 16.1046 3 15V9C3 7.89543 3.89543 7 5 7H19C20.1046 7 21 7.89543 21 9V15C21 16.1046 20.1046 17 19 17Z" stroke="currentColor" stroke-width="2"/>
+                    <path d="M7 17V19C7 19.5523 7.44772 20 8 20H16C16.5523 20 17 19.5523 17 19V17" stroke="currentColor" stroke-width="2"/>
+                    <circle cx="7" cy="12" r="2" stroke="currentColor" stroke-width="2"/>
+                    <circle cx="17" cy="12" r="2" stroke="currentColor" stroke-width="2"/>
+                    <path d="M3 9L5 5H19L21 9" stroke="currentColor" stroke-width="2"/>
+                </svg>
+                <div class="logo-text">
+                    <span class="logo-title">Haji Wadud</span>
+                    <span class="logo-subtitle">CNG & Pick-up Parts</span>
+                </div>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="price-list.html" class="active">Price List</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                    <svg class="sun-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="2"/>
+                        <path d="M12 1V3M12 21V23M23 12H21M3 12H1M20.485 20.485L19.071 19.071M4.929 4.929L3.515 3.515M20.485 3.515L19.071 4.929M4.929 19.071L3.515 20.485" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                    <svg class="moon-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                </button>
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <div class="page-header">
+        <div class="container">
+            <h1>Complete Price List</h1>
+            <p>মূল্য তালিকা - Wholesale & Retail Prices</p>
+        </div>
+    </div>
+
+    <!-- Controls Bar -->
+    <div class="controls-section">
+        <div class="container">
+            <div class="controls-wrapper">
+                <div class="search-group">
+                    <svg class="search-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                    <input type="text" id="searchInput" placeholder="Search by product name or serial number..." class="search-input">
+                </div>
+                <div class="filter-group">
+                    <select id="categoryFilter" class="filter-select">
+                        <option value="all">All Categories</option>
+                        <option value="175">175 Series</option>
+                        <option value="205">205 Series</option>
+                        <option value="225">225 Series</option>
+                        <option value="bearings">Bearings</option>
+                        <option value="tires">Tires & Tubes</option>
+                        <option value="oils">Oils & Lubricants</option>
+                        <option value="electrical">Electrical</option>
+                        <option value="other">Other Parts</option>
+                    </select>
+                </div>
+                <button class="btn-export" onclick="exportToCSV()">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M21 15V19C21 20.1046 20.1046 21 19 21H5C3.89543 21 3 20.1046 3 19V15M17 10L12 15M12 15L7 10M12 15V3" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                    Export CSV
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Statistics -->
+    <div class="stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="stat-label">Total Products</div>
+                    <div class="stat-value" id="totalProducts">489</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">With Prices</div>
+                    <div class="stat-value" id="withPrices">489</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Categories</div>
+                    <div class="stat-value">8</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Displayed</div>
+                    <div class="stat-value" id="displayedCount">489</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Price Table -->
+    <div class="table-section">
+        <div class="container">
+            <div class="table-container">
+                <table class="price-table">
+                    <thead>
+                        <tr>
+                            <th>Serial</th>
+                            <th>Product Name</th>
+                            <th>Wholesale Price</th>
+                            <th>Selling Price</th>
+                        </tr>
+                    </thead>
+                    <tbody id="priceTableBody">
+                        <!-- Data will be loaded here -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="noResults" class="no-results" style="display: none;">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" stroke="currentColor" stroke-width="2"/>
+                </svg>
+                <h3>No Products Found</h3>
+                <p>Try adjusting your search or filter criteria</p>
+            </div>
+
+            <!-- Pagination -->
+            <div class="pagination" id="pagination">
+                <!-- Pagination buttons will be added here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        <svg class="logo-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M19 17H5C3.89543 17 3 16.1046 3 15V9C3 7.89543 3.89543 7 5 7H19C20.1046 7 21 7.89543 21 9V15C21 16.1046 20.1046 17 19 17Z" stroke="currentColor" stroke-width="2"/>
+                            <path d="M7 17V19C7 19.5523 7.44772 20 8 20H16C16.5523 20 17 19.5523 17 19V17" stroke="currentColor" stroke-width="2"/>
+                            <circle cx="7" cy="12" r="2" stroke="currentColor" stroke-width="2"/>
+                            <circle cx="17" cy="12" r="2" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                        <div>
+                            <h3>Haji Wadud</h3>
+                            <p>CNG & Pick-up Parts</p>
+                        </div>
+                    </div>
+                    <p class="footer-description">Your trusted partner for genuine CNG and pick-up auto parts in Bangladesh since 2000.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="products.html">Products</a></li>
+                        <li><a href="price-list.html">Price List</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact Info</h4>
+                    <ul class="contact-info">
+                        <li>
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M17.657 16.657L13.414 20.9C13.039 21.275 12.535 21.4877 12.0083 21.4934C11.4816 21.4991 10.9734 21.2973 10.591 20.93L3.05704 13.414C2.68156 13.0391 2.47975 12.5304 2.49004 12.004V4.99604C2.49004 4.73083 2.59539 4.47647 2.78293 4.28893C2.97047 4.10139 3.22483 3.99604 3.49004 3.99604H10.498C11.024 3.99604 11.528 4.20404 11.903 4.57904L19.419 12.095C19.7933 12.4722 19.9997 12.9831 20 13.515C20.0002 14.0469 19.7943 14.5579 19.42 14.936L17.657 16.657Z" stroke="currentColor" stroke-width="2"/>
+                                <circle cx="7" cy="8" r="1" fill="currentColor"/>
+                            </svg>
+                            Comilla, Chittagong, Bangladesh
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M3 5C3 3.89543 3.89543 3 5 3H8.27924C8.70967 3 9.09181 3.27543 9.22792 3.68377L10.7257 8.17721C10.8831 8.64932 10.6694 9.16531 10.2243 9.38787L7.96701 10.5165C9.06925 12.9612 11.0388 14.9308 13.4835 16.033L14.6121 13.7757C14.8347 13.3306 15.3507 13.1169 15.8228 13.2743L20.3162 14.7721C20.7246 14.9082 21 15.2903 21 15.7208V19C21 20.1046 20.1046 21 19 21H18C9.71573 21 3 14.2843 3 6V5Z" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                            +880 1XXX-XXXXXX
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M3 8L10.8906 13.2604C11.5624 13.7083 12.4376 13.7083 13.1094 13.2604L21 8M5 19H19C20.1046 19 21 18.1046 21 17V7C21 5.89543 20.1046 5 19 5H5C3.89543 5 3 5.89543 3 7V17C3 18.1046 3.89543 19 5 19Z" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                            info@hajiwadudparts.com
+                        </li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Business Hours</h4>
+                    <ul class="business-hours">
+                        <li>
+                            <span>Saturday - Thursday</span>
+                            <strong>9:00 AM - 8:00 PM</strong>
+                        </li>
+                        <li>
+                            <span>Friday</span>
+                            <strong>Closed</strong>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Haji Wadud CNG & Pick-up Parts. All rights reserved.</p>
+                <p>Built with excellence for quality service</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="price-list.js"></script>
+</body>
+</html>
