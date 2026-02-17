@@ -1,246 +1,450 @@
-// Load products from localStorage or use default data
-let allProducts = [];
-const ITEMS_PER_PAGE = 24;
-let currentPage = 1;
-let filteredProducts = [];
+/* ============================================================
+   HAJI WADUD PARTS — PRODUCTS PAGE (Dynamic Google Sheets)
+   ============================================================
+   This file shares the same Google Sheets data source as
+   price-list.js. Update SHEET_CSV_URL once in BOTH files,
+   or better: extract it to a shared config.js (see README).
 
-// Product icons based on category
-const productIcons = {
-    '175': '⚙️',
-    '205': '🔧',
-    '225': '🛠️',
-    'bearing': '⚡',
-    'tire': '🛞',
-    'tube': '⭕',
-    'oil': '🛢️',
-    'default': '🔩'
+   COLUMN ORDER (Row 1 = headers, skipped automatically):
+       A = serial | B = product_name | C = wholesale_price | D = selling_price
+   ============================================================ */
+
+'use strict';
+
+/* ── ❶  CONFIGURATION ──────────────────────────────────────── */
+
+const SHEET_CSV_URL =
+    'https://docs.google.com/spreadsheets/d/e/2PACX-1vQX5mMXfl-gxvEPGLJ-MB4ySw_-8xSNaCeImbFpBwvRF33NphvgTjIaKQ-I8Loc6t4SIEt3UiAv5lEz/pub?gid=2052837076&single=true&output=csv';
+//   ↑ Same URL used in price-list.js — keep both in sync
+
+const CONFIG = {
+    itemsPerPage: 24,           // cards per page (grid view)
+    cacheMinutes: 5,
+    cacheKey:    'hw_price_cache',     // intentionally same key as price-list.js
+    cacheTimeKey:'hw_price_cache_ts',  // so both pages share one cached fetch
 };
 
-// Initialize
-document.addEventListener('DOMContentLoaded', () => {
-    loadProducts();
-    setupEventListeners();
-    displayProducts();
-});
+/* ── ❷  CATEGORY KEYWORDS (same as price-list.js) ─────────── */
 
-// Setup event listeners
-function setupEventListeners() {
-    document.getElementById('searchInput').addEventListener('input', handleFilter);
-    document.getElementById('categoryFilter').addEventListener('change', handleFilter);
-    document.getElementById('sortFilter').addEventListener('change', handleSort);
-    
-    // Hamburger menu
-    const hamburger = document.getElementById('hamburger');
-    const navMenu = document.getElementById('navMenu');
-    
-    if (hamburger) {
-        hamburger.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-        });
+const CATEGORY_KEYWORDS = {
+    '175':       ['175', '১৭৫'],
+    '205':       ['205', '২০৫'],
+    '225':       ['225', '২২৫'],
+    'bearings':  [
+        'bbc','ebh','nachi','sqy','6001','6002','6003','6004','6005',
+        '6007','6200','6201','6202','6203','6204','6205','6301','6302',
+        '6304','6305','16007','63/28','bearing','বেয়ারিং',
+    ],
+    'tires':     ['টায়ার','টিউব','tire','tube'],
+    'oils':      [
+        'মবিল','গ্রিজ','eppco','gulf','titan','total','bno',
+        'german oil','grease','oil',
+    ],
+    'electrical':[
+        'সুইচ','switch','সিডি','cdi','চার্জার','charger',
+        'ওয়ারিং','wiring','লাইট','light','কয়েল','coil',
+    ],
+};
+
+function categorize(name) {
+    const n = name.toLowerCase();
+    for (const [cat, keys] of Object.entries(CATEGORY_KEYWORDS)) {
+        if (keys.some(k => n.includes(k))) return cat;
     }
-}
-
-// Load products from localStorage
-function loadProducts() {
-    const stored = localStorage.getItem('hajiwadud_products');
-    if (stored) {
-        allProducts = JSON.parse(stored);
-    } else {
-        // Default products if none stored
-        allProducts = generateDefaultProducts();
-    }
-    filteredProducts = [...allProducts];
-}
-
-// Generate default products (sample data)
-function generateDefaultProducts() {
-    return [
-        {id: 1, name: "১০নং SS নাট ১০০", wholesale: "150", selling: "180"},
-        {id: 2, name: "১০নং নাট ১০০", wholesale: "120", selling: "150"},
-        {id: 3, name: "১২/১৩ রিং", wholesale: "80", selling: "100"},
-        {id: 4, name: "১২নং SS নাট ১০০", wholesale: "160", selling: "190"},
-        {id: 5, name: "১২নং কেপ নাট ১০০", wholesale: "140", selling: "170"},
-        {id: 6, name: "১২নং নাট ১০০", wholesale: "130", selling: "160"},
-        {id: 7, name: "১৪/১৫ রিং", wholesale: "90", selling: "115"},
-        {id: 8, name: "১৪/১৬ ওভার", wholesale: "200", selling: "240"},
-        {id: 9, name: "১৪/১৬ স্টেন্ডার", wholesale: "180", selling: "220"},
-        {id: 10, name: "16/16 (BAJAJ)", wholesale: "250", selling: "300"},
-        {id: 11, name: "16/16 (IKO)", wholesale: "280", selling: "340"},
-        {id: 12, name: "১৬/১৭ রিং", wholesale: "95", selling: "120"},
-        {id: 13, name: "১৭৫ কাপ S (VIRA)", wholesale: "450", selling: "550"},
-        {id: 14, name: "১৭৫ ১৮ কয়েল", wholesale: "320", selling: "390"},
-        {id: 15, name: "১৭৫ ১নং পিনিয়ম", wholesale: "280", selling: "340"}
-        // Add more products as needed
-    ];
-}
-
-// Get product icon based on name
-function getProductIcon(name) {
-    const nameLower = name.toLowerCase();
-    
-    if (nameLower.includes('175') || nameLower.includes('১৭৫')) return productIcons['175'];
-    if (nameLower.includes('205') || nameLower.includes('২০৫')) return productIcons['205'];
-    if (nameLower.includes('225') || nameLower.includes('২২৫')) return productIcons['225'];
-    if (nameLower.includes('bearing') || nameLower.includes('বেয়ারিং')) return productIcons['bearing'];
-    if (nameLower.includes('টায়ার') || nameLower.includes('tire')) return productIcons['tire'];
-    if (nameLower.includes('টিউব') || nameLower.includes('tube')) return productIcons['tube'];
-    if (nameLower.includes('মবিল') || nameLower.includes('oil')) return productIcons['oil'];
-    
-    return productIcons['default'];
-}
-
-// Categorize product
-function categorizeProduct(name) {
-    const nameLower = name.toLowerCase();
-    
-    if (nameLower.includes('175') || nameLower.includes('১৭৫')) return '175';
-    if (nameLower.includes('205') || nameLower.includes('২০৫')) return '205';
-    if (nameLower.includes('225') || nameLower.includes('২২৫')) return '225';
-    if (nameLower.includes('bearing') || nameLower.includes('বেয়ারিং') || 
-        nameLower.includes('bbc') || nameLower.includes('ebh') || 
-        nameLower.includes('nachi') || nameLower.includes('sqy')) return 'bearings';
-    if (nameLower.includes('টায়ার') || nameLower.includes('tire')) return 'tires';
-    if (nameLower.includes('মবিল') || nameLower.includes('oil') || 
-        nameLower.includes('গ্রিজ')) return 'oils';
-    if (nameLower.includes('সুইচ') || nameLower.includes('switch') || 
-        nameLower.includes('চার্জার') || nameLower.includes('সিডি')) return 'electrical';
-    
     return 'other';
 }
 
-// Handle filtering
-function handleFilter() {
-    const searchTerm = document.getElementById('searchInput').value.toLowerCase();
-    const category = document.getElementById('categoryFilter').value;
-    
-    filteredProducts = allProducts.filter(product => {
-        const matchesSearch = product.name.toLowerCase().includes(searchTerm) ||
-                            product.id.toString().includes(searchTerm);
-        
-        const productCategory = categorizeProduct(product.name);
-        const matchesCategory = category === 'all' || productCategory === category;
-        
-        return matchesSearch && matchesCategory;
-    });
-    
-    currentPage = 1;
-    handleSort();
+/* ── ❸  CATEGORY ICONS ─────────────────────────────────────── */
+
+const CATEGORY_ICONS = {
+    '175':       '⚙️',
+    '205':       '🔧',
+    '225':       '🛠️',
+    'bearings':  '🔩',
+    'tires':     '🛞',
+    'oils':      '🛢️',
+    'electrical':'🔌',
+    'other':     '📦',
+};
+
+function getIcon(name) {
+    return CATEGORY_ICONS[categorize(name)] ?? '📦';
 }
 
-// Handle sorting
-function handleSort() {
-    const sortBy = document.getElementById('sortFilter').value;
-    
-    switch(sortBy) {
+/* ── ❹  STATE ──────────────────────────────────────────────── */
+
+let allProducts  = [];
+let filteredList = [];
+let currentPage  = 1;
+
+/* ── ❺  DOM HELPERS ────────────────────────────────────────── */
+
+const $ = id => document.getElementById(id);
+
+function showSection(section) {
+    // section: 'loader' | 'error' | 'data'
+    $('loaderState').style.display = section === 'loader' ? 'block' : 'none';
+    $('errorState').style.display  = section === 'error'  ? 'block' : 'none';
+    $('dataArea').style.display    = section === 'data'   ? 'block' : 'none';
+}
+
+/* ── ❻  CSV PARSER ─────────────────────────────────────────── */
+
+/**
+ * Minimal RFC 4180-compliant CSV parser.
+ * Handles Bengali Unicode, quoted fields, embedded commas/newlines.
+ * Returns: string[][]
+ */
+function parseCSV(text) {
+    const rows = [];
+    let row = [], field = '', inQ = false, i = 0;
+
+    while (i < text.length) {
+        const ch = text[i], next = text[i + 1];
+
+        if (inQ) {
+            if (ch === '"' && next === '"') { field += '"'; i += 2; }
+            else if (ch === '"')            { inQ = false; i++; }
+            else                            { field += ch; i++; }
+        } else {
+            if      (ch === '"')                      { inQ = true; i++; }
+            else if (ch === ',')                      { row.push(field.trim()); field = ''; i++; }
+            else if (ch === '\r' && next === '\n')    { row.push(field.trim()); rows.push(row); row = []; field = ''; i += 2; }
+            else if (ch === '\n' || ch === '\r')      { row.push(field.trim()); rows.push(row); row = []; field = ''; i++; }
+            else                                      { field += ch; i++; }
+        }
+    }
+
+    if (field !== '' || row.length) {
+        row.push(field.trim());
+        if (row.some(f => f !== '')) rows.push(row);
+    }
+
+    return rows;
+}
+
+/**
+ * Convert raw CSV rows → product objects.
+ * Row 0 = headers (skipped). Columns: serial, name, wholesale, selling.
+ */
+function csvToProducts(rows) {
+    if (!rows || rows.length < 2) return [];
+    return rows
+        .slice(1)
+        .filter(r => r.length >= 2 && r[1])
+        .map(r => ({
+            serial:    r[0] || '',
+            name:      r[1] || '',
+            wholesale: r[2] || '',
+            selling:   r[3] || '',
+        }));
+}
+
+/* ── ❼  FETCH WITH CACHE ────────────────────────────────────── */
+
+/**
+ * Fetches the published CSV. Caches in sessionStorage for
+ * CONFIG.cacheMinutes. The cache key is shared with price-list.js
+ * so navigating between pages doesn't double-fetch.
+ */
+async function fetchSheetData(forceRefresh = false) {
+    const now      = Date.now();
+    const cached   = sessionStorage.getItem(CONFIG.cacheKey);
+    const cachedTs = parseInt(sessionStorage.getItem(CONFIG.cacheTimeKey) || '0', 10);
+    const maxAge   = CONFIG.cacheMinutes * 60 * 1000;
+
+    if (!forceRefresh && cached && (now - cachedTs) < maxAge) {
+        return cached;
+    }
+
+    const url = SHEET_CSV_URL.includes('?')
+        ? `${SHEET_CSV_URL}&_cb=${now}`
+        : `${SHEET_CSV_URL}?_cb=${now}`;
+
+    const response = await fetch(url, { cache: 'no-store' });
+
+    if (!response.ok) {
+        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+    }
+
+    const text = await response.text();
+    sessionStorage.setItem(CONFIG.cacheKey, text);
+    sessionStorage.setItem(CONFIG.cacheTimeKey, String(now));
+
+    return text;
+}
+
+/* ── ❽  MAIN LOAD ───────────────────────────────────────────── */
+
+async function loadData(forceRefresh = false) {
+    showSection('loader');
+
+    try {
+        const csvText = await fetchSheetData(forceRefresh);
+        const rows    = parseCSV(csvText);
+        allProducts   = csvToProducts(rows);
+
+        if (allProducts.length === 0) {
+            throw new Error('Sheet appears to be empty or column structure does not match.');
+        }
+
+        applyFilters();     // renders cards + pagination
+        showSection('data');
+        updateTimestamp();
+
+        if (forceRefresh && typeof showToast === 'function') {
+            showToast(`✓ Products refreshed — ${allProducts.length} items loaded.`);
+        }
+
+    } catch (err) {
+        console.error('[Products] Fetch error:', err);
+        $('errorMsg').textContent =
+            err.message.startsWith('HTTP') || err.message.includes('Sheet')
+                ? `Error: ${err.message} — Ensure the Google Sheet is published to the web.`
+                : 'Network error. Please check your connection and try again.';
+        showSection('error');
+    }
+}
+
+/* ── ❾  FILTER + SORT ───────────────────────────────────────── */
+
+function applyFilters() {
+    const query    = ($('searchInput')?.value || '').toLowerCase().trim();
+    const category = $('categoryFilter')?.value || 'all';
+
+    filteredList = allProducts.filter(p => {
+        const matchSearch =
+            !query ||
+            p.name.toLowerCase().includes(query) ||
+            p.serial.toLowerCase().includes(query);
+
+        const matchCat =
+            category === 'all' || categorize(p.name) === category;
+
+        return matchSearch && matchCat;
+    });
+
+    currentPage = 1;
+    applySort();   // sort calls render()
+}
+
+function applySort() {
+    const sort = $('sortFilter')?.value || 'serial';
+
+    switch (sort) {
         case 'name':
-            filteredProducts.sort((a, b) => a.name.localeCompare(b.name));
+            filteredList.sort((a, b) =>
+                a.name.localeCompare(b.name, 'bn', { sensitivity: 'base' })
+            );
             break;
         case 'price-low':
-            filteredProducts.sort((a, b) => {
-                const priceA = parseFloat(a.selling) || 0;
-                const priceB = parseFloat(b.selling) || 0;
-                return priceA - priceB;
-            });
+            filteredList.sort((a, b) =>
+                (parseFloat(a.selling) || 0) - (parseFloat(b.selling) || 0)
+            );
             break;
         case 'price-high':
-            filteredProducts.sort((a, b) => {
-                const priceA = parseFloat(a.selling) || 0;
-                const priceB = parseFloat(b.selling) || 0;
-                return priceB - priceA;
-            });
+            filteredList.sort((a, b) =>
+                (parseFloat(b.selling) || 0) - (parseFloat(a.selling) || 0)
+            );
             break;
-        default: // serial
-            filteredProducts.sort((a, b) => a.id - b.id);
+        default: // 'serial'
+            filteredList.sort((a, b) => {
+                const nA = parseFloat(a.serial) || 0;
+                const nB = parseFloat(b.serial) || 0;
+                return nA !== nB ? nA - nB : a.serial.localeCompare(b.serial);
+            });
     }
-    
-    displayProducts();
+
+    render();
 }
 
-// Display products
-function displayProducts() {
-    const grid = document.getElementById('productsGrid');
-    const emptyState = document.getElementById('emptyState');
-    const resultCount = document.getElementById('resultCount');
-    
-    resultCount.textContent = filteredProducts.length;
-    
-    if (filteredProducts.length === 0) {
-        grid.style.display = 'none';
+/* ── ❿  RENDER CARDS ────────────────────────────────────────── */
+
+function escapeHTML(str) {
+    return str
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+}
+
+function highlight(text, query) {
+    if (!query) return escapeHTML(text);
+    const esc   = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const regex = new RegExp(`(${esc})`, 'gi');
+    return escapeHTML(text).replace(regex, '<mark>$1</mark>');
+}
+
+function fmtPrice(val) {
+    if (!val || val === '') return '–';
+    const n = parseFloat(val);
+    if (isNaN(n)) return '–';
+    return '৳\u00A0' + n.toLocaleString('en-US', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+    });
+}
+
+function render() {
+    const grid       = $('productsGrid');
+    const emptyState = $('emptyState');
+    const countEl    = $('resultCount');
+
+    if (countEl) countEl.textContent = filteredList.length;
+
+    if (filteredList.length === 0) {
+        grid.style.display       = 'none';
         emptyState.style.display = 'block';
-        document.getElementById('pagination').innerHTML = '';
+        $('pagination').innerHTML = '';
         return;
     }
-    
-    grid.style.display = 'grid';
+
+    grid.style.display       = 'grid';
     emptyState.style.display = 'none';
-    
-    const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
-    const endIndex = startIndex + ITEMS_PER_PAGE;
-    const pageProducts = filteredProducts.slice(startIndex, endIndex);
-    
-    grid.innerHTML = pageProducts.map(product => `
-        <div class="product-card">
-            <div class="product-icon">${getProductIcon(product.name)}</div>
-            <div class="product-serial">Serial #${product.id}</div>
-            <div class="product-name">${product.name}</div>
-            <div class="product-prices">
-                <div class="price-item">
-                    <div class="price-label">Wholesale</div>
-                    <div class="price-value">
-                        ${product.wholesale ? '৳' + parseFloat(product.wholesale).toFixed(2) : 'N/A'}
+
+    const query     = ($('searchInput')?.value || '').toLowerCase().trim();
+    const start     = (currentPage - 1) * CONFIG.itemsPerPage;
+    const paginated = filteredList.slice(start, start + CONFIG.itemsPerPage);
+
+    grid.innerHTML = paginated.map((p, idx) => {
+        const rowNum = start + idx + 1;
+        return `
+            <article class="product-card animate-on-scroll visible">
+                <div class="product-card-icon" aria-hidden="true">${getIcon(p.name)}</div>
+                <div class="product-card-serial">
+                    Serial #${escapeHTML(p.serial) || rowNum}
+                </div>
+                <div class="product-card-name">${highlight(p.name, query)}</div>
+                <div class="product-card-prices">
+                    <div class="price-item">
+                        <div class="price-item-label">Wholesale</div>
+                        <div class="price-item-value">${fmtPrice(p.wholesale)}</div>
+                    </div>
+                    <div class="price-item">
+                        <div class="price-item-label">Retail</div>
+                        <div class="price-item-value">${fmtPrice(p.selling)}</div>
                     </div>
                 </div>
-                <div class="price-item">
-                    <div class="price-label">Retail</div>
-                    <div class="price-value">
-                        ${product.selling ? '৳' + parseFloat(product.selling).toFixed(2) : 'N/A'}
-                    </div>
-                </div>
-            </div>
-        </div>
-    `).join('');
-    
+            </article>
+        `;
+    }).join('');
+
     renderPagination();
 }
 
-// Render pagination
+/* ── ⓫  PAGINATION ─────────────────────────────────────────── */
+
 function renderPagination() {
-    const totalPages = Math.ceil(filteredProducts.length / ITEMS_PER_PAGE);
-    const pagination = document.getElementById('pagination');
-    
-    if (totalPages <= 1) {
-        pagination.innerHTML = '';
-        return;
+    const totalPages = Math.ceil(filteredList.length / CONFIG.itemsPerPage);
+    const nav        = $('pagination');
+
+    if (totalPages <= 1) { nav.innerHTML = ''; return; }
+
+    const MAX = 5;
+    let sp = Math.max(1, currentPage - Math.floor(MAX / 2));
+    let ep = Math.min(totalPages, sp + MAX - 1);
+    if (ep - sp < MAX - 1) sp = Math.max(1, ep - MAX + 1);
+
+    let html = `
+        <button class="page-btn" onclick="changePage(${currentPage - 1})"
+                ${currentPage === 1 ? 'disabled' : ''}
+                aria-label="Previous page">← Prev</button>`;
+
+    if (sp > 1) {
+        html += `<button class="page-btn" onclick="changePage(1)" aria-label="Page 1">1</button>`;
+        if (sp > 2) html += `<span class="page-ellipsis" aria-hidden="true">…</span>`;
     }
-    
-    let html = '';
-    
-    // Previous button
-    if (currentPage > 1) {
-        html += `<button class="page-btn" onclick="changePage(${currentPage - 1})">← Previous</button>`;
+
+    for (let i = sp; i <= ep; i++) {
+        html += `
+            <button class="page-btn ${i === currentPage ? 'active' : ''}"
+                    onclick="changePage(${i})"
+                    aria-label="Page ${i}"
+                    ${i === currentPage ? 'aria-current="page"' : ''}>${i}</button>`;
     }
-    
-    // Page numbers
-    for (let i = 1; i <= totalPages; i++) {
-        if (i === 1 || i === totalPages || (i >= currentPage - 2 && i <= currentPage + 2)) {
-            html += `<button class="page-btn ${i === currentPage ? 'active' : ''}" 
-                            onclick="changePage(${i})">${i}</button>`;
-        } else if (i === currentPage - 3 || i === currentPage + 3) {
-            html += `<span class="page-btn" style="border: none; cursor: default;">...</span>`;
-        }
+
+    if (ep < totalPages) {
+        if (ep < totalPages - 1) html += `<span class="page-ellipsis" aria-hidden="true">…</span>`;
+        html += `<button class="page-btn" onclick="changePage(${totalPages})" aria-label="Last page">${totalPages}</button>`;
     }
-    
-    // Next button
-    if (currentPage < totalPages) {
-        html += `<button class="page-btn" onclick="changePage(${currentPage + 1})">Next →</button>`;
-    }
-    
-    pagination.innerHTML = html;
+
+    html += `
+        <button class="page-btn" onclick="changePage(${currentPage + 1})"
+                ${currentPage === totalPages ? 'disabled' : ''}
+                aria-label="Next page">Next →</button>`;
+
+    nav.innerHTML = html;
 }
 
-// Change page
 function changePage(page) {
+    const total = Math.ceil(filteredList.length / CONFIG.itemsPerPage);
+    if (page < 1 || page > total) return;
     currentPage = page;
-    displayProducts();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    render();
+    document.querySelector('main')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
+
+window.changePage = changePage;
+
+/* ── ⓬  TIMESTAMP ──────────────────────────────────────────── */
+
+function updateTimestamp() {
+    const ts = $('lastUpdated');
+    if (!ts) return;
+    const fmt = new Date().toLocaleString('en-BD', {
+        dateStyle: 'medium',
+        timeStyle: 'short',
+    });
+    ts.innerHTML = `Data last fetched: <span>${fmt}</span>`;
+}
+
+/* ── ⓭  EVENT LISTENERS ────────────────────────────────────── */
+
+document.addEventListener('DOMContentLoaded', () => {
+
+    const searchInput    = $('searchInput');
+    const categoryFilter = $('categoryFilter');
+    const sortFilter     = $('sortFilter');
+
+    /* ── Search (debounced 280 ms) ── */
+    if (searchInput) {
+        const debounced = window.debounce
+            ? window.debounce(applyFilters, 280)
+            : applyFilters;
+        searchInput.addEventListener('input', debounced);
+    }
+
+    /* ── Category filter ── */
+    categoryFilter?.addEventListener('change', applyFilters);
+
+    /* ── Sort filter (sort only, no re-fetch needed) ── */
+    sortFilter?.addEventListener('change', () => {
+        currentPage = 1;
+        applySort();
+    });
+
+    /* ── Keyboard shortcuts ── */
+    document.addEventListener('keydown', e => {
+        if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+            e.preventDefault();
+            searchInput?.focus();
+        }
+        if (e.key === 'Escape' && searchInput?.value) {
+            searchInput.value = '';
+            applyFilters();
+        }
+    });
+
+    /* ── Pre-select category from URL param ── */
+    const urlParams = new URLSearchParams(window.location.search);
+    const cat       = urlParams.get('category');
+    if (cat && categoryFilter) {
+        categoryFilter.value = cat;
+    }
+
+    /* ── Initial data load ── */
+    loadData();
+});
+
+/* ── ⓮  GLOBAL EXPOSE ──────────────────────────────────────── */
+window.loadData = loadData;
