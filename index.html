@@ -1,325 +1,288 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Haji Wadud CNG & Pick-up Parts - Quality Auto Parts in Bangladesh</title>
-    <meta name="description" content="Leading supplier of CNG and pick-up vehicle parts in Comilla, Bangladesh. Genuine parts from BAJAJ, VIRA, MAT and more.">
+    <title>Haji Wadud Parts — CNG &amp; Pick-up Auto Parts in Bangladesh</title>
+    <meta name="description" content="Leading supplier of genuine CNG and pick-up vehicle parts in Comilla, Bangladesh. Wholesale &amp; retail prices on BAJAJ, VIRA, MAT, NACHI and more.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="logo">
-                <svg class="logo-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M19 17H5C3.89543 17 3 16.1046 3 15V9C3 7.89543 3.89543 7 5 7H19C20.1046 7 21 7.89543 21 9V15C21 16.1046 20.1046 17 19 17Z" stroke="currentColor" stroke-width="2"/>
-                    <path d="M7 17V19C7 19.5523 7.44772 20 8 20H16C16.5523 20 17 19.5523 17 19V17" stroke="currentColor" stroke-width="2"/>
-                    <circle cx="7" cy="12" r="2" stroke="currentColor" stroke-width="2"/>
-                    <circle cx="17" cy="12" r="2" stroke="currentColor" stroke-width="2"/>
-                    <path d="M3 9L5 5H19L21 9" stroke="currentColor" stroke-width="2"/>
-                </svg>
-                <div class="logo-text">
-                    <span class="logo-title">Haji Wadud</span>
-                    <span class="logo-subtitle">CNG & Pick-up Parts</span>
-                </div>
-            </div>
+
+    <!-- ===== NAVBAR ===== -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-inner">
+            <a href="index.html" class="logo" aria-label="Haji Wadud Parts — Home">
+                <span class="logo-primary">Haji Wadud</span>
+                <span class="logo-secondary">CNG &amp; Pick-up Parts</span>
+            </a>
+
             <ul class="nav-menu" id="navMenu">
-                <li><a href="index.html" class="active">Home</a></li>
-                <li><a href="products.html">Products</a></li>
-                <li><a href="price-list.html">Price List</a></li>
-                <li><a href="about.html">About Us</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="index.html" class="nav-link active">Home</a></li>
+                <li><a href="products.html" class="nav-link">Products</a></li>
+                <li><a href="price-list.html" class="nav-link">Price List</a></li>
+                <li><a href="about.html" class="nav-link">About Us</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
             </ul>
-            <div class="nav-actions">
-                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-                    <svg class="sun-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="2"/>
-                        <path d="M12 1V3M12 21V23M23 12H21M3 12H1M20.485 20.485L19.071 19.071M4.929 4.929L3.515 3.515M20.485 3.515L19.071 4.929M4.929 19.071L3.515 20.485" stroke="currentColor" stroke-width="2"/>
+
+            <div class="nav-controls">
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+                    <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                        <circle cx="12" cy="12" r="5"/>
+                        <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
                     </svg>
-                    <svg class="moon-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" stroke="currentColor" stroke-width="2"/>
+                    <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
                     </svg>
                 </button>
-                <div class="hamburger" id="hamburger">
+                <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="navMenu">
                     <span></span>
                     <span></span>
                     <span></span>
-                </div>
+                </button>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section with Background Image -->
-    <section class="hero hero-with-bg">
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <div class="hero-badge">🏆 Trusted Since 2003</div>
-            <h1 class="hero-title">Premium Auto Parts for CNG & Pick-up Vehicles</h1>
-            <p class="hero-subtitle">Your One-Stop Shop for Quality Parts</p>
-            <p class="hero-description">We supply genuine automotive parts from leading brands including BAJAJ, VIRA, MAT, NACHI, and more. Competitive prices for wholesale and retail customers across Bangladesh.</p>
-            <div class="hero-buttons">
-                <a href="products.html" class="btn btn-primary">
-                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" stroke="currentColor" stroke-width="2"/>
-                    </svg>
-                    Browse Products
-                </a>
-                <a href="price-list.html" class="btn btn-secondary">
-                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M9 5H7C5.89543 5 5 5.89543 5 7V19C5 20.1046 5.89543 21 7 21H17C18.1046 21 19 20.1046 19 19V7C19 5.89543 18.1046 5 17 5H15M9 5C9 6.10457 9.89543 7 11 7H13C14.1046 7 15 6.10457 15 5M9 5C9 3.89543 9.89543 3 11 3H13C14.1046 3 15 3.89543 15 5" stroke="currentColor" stroke-width="2"/>
-                    </svg>
-                    View Price List
-                </a>
-            </div>
-        </div>
-        <div class="hero-stats">
-            <div class="stat-card-hero">
-                <div class="stat-icon">📦</div>
-                <div class="stat-info">
-                    <h3>500+</h3>
-                    <p>Products Available</p>
+    <!-- ===== HERO ===== -->
+    <section class="hero">
+        <div class="hero-bg-image" aria-hidden="true"></div>
+        <div class="hero-overlay" aria-hidden="true"></div>
+        <div class="container hero-content">
+            <div class="hero-text">
+                <span class="badge">🏆 Trusted Since 2003</span>
+                <h1>Premium Auto Parts for CNG &amp; Pick-up Vehicles</h1>
+                <p class="hero-desc">Genuine parts from BAJAJ, VIRA, MAT, NACHI and more. Competitive wholesale &amp; retail prices for mechanics, dealers, and vehicle owners across Bangladesh.</p>
+                <div class="hero-actions">
+                    <a href="products.html" class="btn btn-primary">Browse Products</a>
+                    <a href="price-list.html" class="btn btn-outline-white">View Price List</a>
                 </div>
             </div>
-            <div class="stat-card-hero">
-                <div class="stat-icon">✓</div>
-                <div class="stat-info">
-                    <h3>100%</h3>
-                    <p>Genuine Parts</p>
+            <div class="hero-stats">
+                <div class="stat-card">
+                    <span class="stat-number">500+</span>
+                    <span class="stat-label">Products</span>
                 </div>
-            </div>
-            <div class="stat-card-hero">
-                <div class="stat-icon">⚡</div>
-                <div class="stat-info">
-                    <h3>24/7</h3>
-                    <p>Quick Service</p>
+                <div class="stat-card">
+                    <span class="stat-number">100%</span>
+                    <span class="stat-label">Genuine Parts</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">20+</span>
+                    <span class="stat-label">Years Active</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Features Section -->
-    <section class="features">
+    <!-- ===== WHY CHOOSE US ===== -->
+    <section class="section bg-white">
         <div class="container">
             <div class="section-header">
-                <span class="section-badge">Our Advantages</span>
-                <h2 class="section-title">Why Choose Haji Wadud Parts</h2>
-                <p class="section-description">We are committed to providing the best quality parts and service to our customers</p>
+                <span class="section-tag">Our Advantages</span>
+                <h2>Why Choose Haji Wadud Parts</h2>
+                <p>We are committed to providing the best quality parts and service to our customers</p>
             </div>
-            <div class="features-grid">
+            <div class="grid-4">
                 <div class="feature-card">
                     <div class="feature-icon">
-                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" stroke-width="2"/>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                            <path d="M9 12l2 2 4-4"/>
+                            <path d="M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9 9 4.03 9 9z"/>
                         </svg>
                     </div>
                     <h3>Authentic Parts Only</h3>
-                    <p>Every product is sourced directly from authorized manufacturers and distributors. We guarantee 100% genuine parts.</p>
+                    <p>Every product is sourced directly from authorized manufacturers. We guarantee 100% genuine, quality-tested parts.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">
-                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M12 8V12L15 15M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" stroke-width="2"/>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                            <path d="M12 8V12l3 3"/>
+                            <circle cx="12" cy="12" r="9"/>
                         </svg>
                     </div>
                     <h3>Competitive Pricing</h3>
-                    <p>Best wholesale and retail prices in the market. Volume discounts available for dealers and mechanics.</p>
+                    <p>Best wholesale and retail prices in the market. Volume discounts available for regular dealers and mechanics.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">
-                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M20 7L12 3L4 7M20 7L12 11M20 7V17L12 21M12 11L4 7M12 11V21M4 7V17L12 21" stroke="currentColor" stroke-width="2"/>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                            <path d="M20 7L12 3 4 7m16 0l-8 4m0 0L4 7m8 4v10M4 7v10l8 4M20 7v10l-8 4"/>
                         </svg>
                     </div>
                     <h3>Large Inventory</h3>
-                    <p>Over 500 different parts in stock including engine components, electrical parts, tires, lubricants and more.</p>
+                    <p>Over 500 parts in stock — engine components, electrical parts, tires, bearings, lubricants and more.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">
-                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M13 10V3L4 14H11V21L20 10H13Z" stroke="currentColor" stroke-width="2"/>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                            <circle cx="9" cy="7" r="4"/>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
                         </svg>
                     </div>
-                    <h3>Fast Delivery</h3>
-                    <p>Quick order processing and efficient service. Most items available for immediate pickup or same-day delivery.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M17 20H22V18C22 16.3431 20.6569 15 19 15C18.0444 15 17.1931 15.4468 16.6438 16.1429M17 20H7M17 20V18C17 17.3438 16.8736 16.717 16.6438 16.1429M7 20H2V18C2 16.3431 3.34315 15 5 15C5.95561 15 6.80686 15.4468 7.35625 16.1429M7 20V18C7 17.3438 7.12642 16.717 7.35625 16.1429M7.35625 16.1429C8.0935 14.301 9.89482 13 12 13C14.1052 13 15.9065 14.301 16.6438 16.1429M15 7C15 8.65685 13.6569 10 12 10C10.3431 10 9 8.65685 9 7C9 5.34315 10.3431 4 12 4C13.6569 4 15 5.34315 15 7ZM21 10C21 11.1046 20.1046 12 19 12C17.8954 12 17 11.1046 17 10C17 8.89543 17.8954 8 19 8C20.1046 8 21 8.89543 21 10ZM7 10C7 11.1046 6.10457 12 5 12C3.89543 12 3 11.1046 3 10C3 8.89543 3.89543 8 5 8C6.10457 8 7 8.89543 7 10Z" stroke="currentColor" stroke-width="2"/>
-                        </svg>
-                    </div>
-                    <h3>Expert Support</h3>
-                    <p>Knowledgeable staff with years of experience ready to help you find the exact parts you need.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M11.049 2.927C11.3483 2.00556 12.6517 2.00556 12.951 2.927L14.4699 7.60081C14.6038 8.01284 14.9877 8.29149 15.4209 8.29149H20.3354C21.3041 8.29149 21.7068 9.53688 20.9232 10.1008L16.9474 12.9894C16.5969 13.2441 16.4503 13.6954 16.5841 14.1074L18.1026 18.7812C18.4019 19.7027 17.3475 20.4686 16.5638 19.9047L12.5878 17.016C12.2373 16.7614 11.7627 16.7614 11.4122 17.016L7.43622 19.9047C6.65252 20.4686 5.5981 19.7027 5.89742 18.7812L7.41593 14.1074C7.54974 13.6954 7.40309 13.2441 7.05263 12.9894L3.07683 10.1008C2.29317 9.53688 2.69592 8.29149 3.66461 8.29149H8.57911C9.01231 8.29149 9.39623 8.01284 9.53011 7.60081L11.049 2.927Z" stroke="currentColor" stroke-width="2"/>
-                        </svg>
-                    </div>
-                    <h3>Trusted Reputation</h3>
-                    <p>Years of experience serving mechanics, dealers, and vehicle owners with excellence and integrity.</p>
+                    <h3>Expert Guidance</h3>
+                    <p>Our experienced staff help you identify the exact right part for your vehicle — every time, without guesswork.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Categories Section -->
-    <section class="categories">
+    <!-- ===== PRODUCT CATEGORIES ===== -->
+    <section class="section bg-muted">
         <div class="container">
             <div class="section-header">
-                <span class="section-badge">Product Range</span>
-                <h2 class="section-title">Browse by Category</h2>
-                <p class="section-description">Find exactly what you need from our comprehensive inventory</p>
+                <span class="section-tag">Browse by Type</span>
+                <h2>Product Categories</h2>
+                <p>Find parts organized by vehicle type, system, and brand</p>
             </div>
-            <div class="categories-grid">
+            <div class="grid-3">
                 <a href="products.html?category=175" class="category-card">
-                    <div class="category-icon">⚙️</div>
-                    <h3>175 Series Parts</h3>
-                    <p>Engine parts, gears, clutch components</p>
-                    <span class="category-arrow">→</span>
+                    <span class="category-icon" aria-hidden="true">⚙️</span>
+                    <div class="category-body">
+                        <h3>175 Series Parts</h3>
+                        <p>Engine, gears &amp; drivetrain components</p>
+                    </div>
+                    <span class="category-arrow" aria-hidden="true">→</span>
                 </a>
                 <a href="products.html?category=205" class="category-card">
-                    <div class="category-icon">🔧</div>
-                    <h3>205 Series Parts</h3>
-                    <p>Complete range for 205 models</p>
-                    <span class="category-arrow">→</span>
+                    <span class="category-icon" aria-hidden="true">🔧</span>
+                    <div class="category-body">
+                        <h3>205 Series Parts</h3>
+                        <p>Full range for 205 engine variants</p>
+                    </div>
+                    <span class="category-arrow" aria-hidden="true">→</span>
                 </a>
                 <a href="products.html?category=225" class="category-card">
-                    <div class="category-icon">🛠️</div>
-                    <h3>225 Series Parts</h3>
-                    <p>Premium parts for 225 engines</p>
-                    <span class="category-arrow">→</span>
+                    <span class="category-icon" aria-hidden="true">🛠️</span>
+                    <div class="category-body">
+                        <h3>225 Series Parts</h3>
+                        <p>Premium parts for 225 engines</p>
+                    </div>
+                    <span class="category-arrow" aria-hidden="true">→</span>
                 </a>
                 <a href="products.html?category=electrical" class="category-card">
-                    <div class="category-icon">🔌</div>
-                    <h3>Electrical Parts</h3>
-                    <p>CDI, coils, switches, wiring, lights</p>
-                    <span class="category-arrow">→</span>
+                    <span class="category-icon" aria-hidden="true">🔌</span>
+                    <div class="category-body">
+                        <h3>Electrical Parts</h3>
+                        <p>CDI, coils, switches, wiring, lights</p>
+                    </div>
+                    <span class="category-arrow" aria-hidden="true">→</span>
                 </a>
                 <a href="products.html?category=bearings" class="category-card">
-                    <div class="category-icon">⚡</div>
-                    <h3>Bearings</h3>
-                    <p>NACHI, BBC, EBH, SQY brands</p>
-                    <span class="category-arrow">→</span>
+                    <span class="category-icon" aria-hidden="true">🔩</span>
+                    <div class="category-body">
+                        <h3>Bearings</h3>
+                        <p>NACHI, BBC, EBH, SQY brands</p>
+                    </div>
+                    <span class="category-arrow" aria-hidden="true">→</span>
                 </a>
                 <a href="products.html?category=tires" class="category-card">
-                    <div class="category-icon">🛞</div>
-                    <h3>Tires & Tubes</h3>
-                    <p>All sizes from top manufacturers</p>
-                    <span class="category-arrow">→</span>
+                    <span class="category-icon" aria-hidden="true">🛞</span>
+                    <div class="category-body">
+                        <h3>Tires &amp; Tubes</h3>
+                        <p>All sizes from top manufacturers</p>
+                    </div>
+                    <span class="category-arrow" aria-hidden="true">→</span>
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- Brands Section -->
-    <section class="brands">
+    <!-- ===== BRANDS ===== -->
+    <section class="section bg-white">
         <div class="container">
             <div class="section-header">
-                <span class="section-badge">Trusted Brands</span>
-                <h2 class="section-title">We Stock Premium Brands</h2>
+                <span class="section-tag">Trusted Brands</span>
+                <h2>We Stock Premium Brands</h2>
+                <p>Partnered with leading automotive manufacturers for genuine quality</p>
             </div>
             <div class="brands-grid">
-                <div class="brand-item">BAJAJ</div>
-                <div class="brand-item">VIRA</div>
-                <div class="brand-item">MAT</div>
-                <div class="brand-item">NACHI</div>
-                <div class="brand-item">VARROC</div>
-                <div class="brand-item">ROLON</div>
-                <div class="brand-item">IKON</div>
-                <div class="brand-item">MGN</div>
+                <div class="brand-pill">BAJAJ</div>
+                <div class="brand-pill">VIRA</div>
+                <div class="brand-pill">MAT</div>
+                <div class="brand-pill">NACHI</div>
+                <div class="brand-pill">VARROC</div>
+                <div class="brand-pill">ROLON</div>
+                <div class="brand-pill">IKON</div>
+                <div class="brand-pill">MGN</div>
+                <div class="brand-pill">PAVNA</div>
+                <div class="brand-pill">IKO</div>
             </div>
         </div>
     </section>
 
-    <!-- CTA Section -->
-    <section class="cta">
-        <div class="container">
-            <div class="cta-content">
-                <h2>Ready to Get Started?</h2>
-                <p>Contact us today for quotes, availability checks, or visit our store for immediate assistance</p>
-                <a href="contact.html" class="btn btn-light">
-                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M3 8L10.8906 13.2604C11.5624 13.7083 12.4376 13.7083 13.1094 13.2604L21 8M5 19H19C20.1046 19 21 18.1046 21 17V7C21 5.89543 20.1046 5 19 5H5C3.89543 5 3 5.89543 3 7V17C3 18.1046 3.89543 19 5 19Z" stroke="currentColor" stroke-width="2"/>
-                    </svg>
-                    Contact Us Now
-                </a>
-            </div>
+    <!-- ===== CTA ===== -->
+    <section class="cta-section">
+        <div class="container cta-inner">
+            <h2>Ready to Find Your Parts?</h2>
+            <p>Contact us today for quotes, availability checks, or visit our store in Comilla for immediate assistance.</p>
+            <a href="contact.html" class="btn btn-white">Contact Us Now</a>
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- ===== FOOTER ===== -->
     <footer class="footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col">
-                    <div class="footer-logo">
-                        <svg class="logo-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M19 17H5C3.89543 17 3 16.1046 3 15V9C3 7.89543 3.89543 7 5 7H19C20.1046 7 21 7.89543 21 9V15C21 16.1046 20.1046 17 19 17Z" stroke="currentColor" stroke-width="2"/>
-                            <path d="M7 17V19C7 19.5523 7.44772 20 8 20H16C16.5523 20 17 19.5523 17 19V17" stroke="currentColor" stroke-width="2"/>
-                            <circle cx="7" cy="12" r="2" stroke="currentColor" stroke-width="2"/>
-                            <circle cx="17" cy="12" r="2" stroke="currentColor" stroke-width="2"/>
-                        </svg>
-                        <div>
-                            <h3>Haji Wadud</h3>
-                            <p>CNG & Pick-up Parts</p>
-                        </div>
-                    </div>
-                    <p class="footer-description">Your trusted partner for genuine CNG and pick-up auto parts in Bangladesh since 2000.</p>
-                </div>
-                <div class="footer-col">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="products.html">Products</a></li>
-                        <li><a href="price-list.html">Price List</a></li>
-                        <li><a href="about.html">About Us</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Contact Info</h4>
-                    <ul class="contact-info">
-                        <li>
-                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M17.657 16.657L13.414 20.9C13.039 21.275 12.535 21.4877 12.0083 21.4934C11.4816 21.4991 10.9734 21.2973 10.591 20.93L3.05704 13.414C2.68156 13.0391 2.47975 12.5304 2.49004 12.004V4.99604C2.49004 4.73083 2.59539 4.47647 2.78293 4.28893C2.97047 4.10139 3.22483 3.99604 3.49004 3.99604H10.498C11.024 3.99604 11.528 4.20404 11.903 4.57904L19.419 12.095C19.7933 12.4722 19.9997 12.9831 20 13.515C20.0002 14.0469 19.7943 14.5579 19.42 14.936L17.657 16.657Z" stroke="currentColor" stroke-width="2"/>
-                                <circle cx="7" cy="8" r="1" fill="currentColor"/>
-                            </svg>
-                            Comilla, Chittagong, Bangladesh
-                        </li>
-                        <li>
-                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M3 5C3 3.89543 3.89543 3 5 3H8.27924C8.70967 3 9.09181 3.27543 9.22792 3.68377L10.7257 8.17721C10.8831 8.64932 10.6694 9.16531 10.2243 9.38787L7.96701 10.5165C9.06925 12.9612 11.0388 14.9308 13.4835 16.033L14.6121 13.7757C14.8347 13.3306 15.3507 13.1169 15.8228 13.2743L20.3162 14.7721C20.7246 14.9082 21 15.2903 21 15.7208V19C21 20.1046 20.1046 21 19 21H18C9.71573 21 3 14.2843 3 6V5Z" stroke="currentColor" stroke-width="2"/>
-                            </svg>
-                            +880 1XXX-XXXXXX
-                        </li>
-                        <li>
-                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M3 8L10.8906 13.2604C11.5624 13.7083 12.4376 13.7083 13.1094 13.2604L21 8M5 19H19C20.1046 19 21 18.1046 21 17V7C21 5.89543 20.1046 5 19 5H5C3.89543 5 3 5.89543 3 7V17C3 18.1046 3.89543 19 5 19Z" stroke="currentColor" stroke-width="2"/>
-                            </svg>
-                            info@hajiwadudparts.com
-                        </li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Business Hours</h4>
-                    <ul class="business-hours">
-                        <li>
-                            <span>Saturday - Thursday</span>
-                            <strong>9:00 AM - 8:00 PM</strong>
-                        </li>
-                        <li>
-                            <span>Friday</span>
-                            <strong>Closed</strong>
-                        </li>
-                    </ul>
-                </div>
+        <div class="container footer-grid">
+            <div class="footer-col footer-brand-col">
+                <a href="index.html" class="logo footer-logo" aria-label="Haji Wadud Parts — Home">
+                    <span class="logo-primary">Haji Wadud</span>
+                    <span class="logo-secondary">CNG &amp; Pick-up Parts</span>
+                </a>
+                <p class="footer-tagline">Your trusted partner for genuine CNG and pick-up auto parts in Bangladesh since 2000.</p>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 Haji Wadud CNG & Pick-up Parts. All rights reserved.</p>
-                <p>Built with excellence for quality service</p>
+
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="price-list.html">Price List</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Contact Info</h4>
+                <ul class="footer-contact-list">
+                    <li>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>
+                        <span>Comilla, Chittagong, Bangladesh</span>
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.1h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.71 2.81a2 2 0 0 1-.45 2.11L7.91 8.7A16 16 0 0 0 15.3 16l.95-.95a2 2 0 0 1 2.11-.45c.9.35 1.85.58 2.81.71A2 2 0 0 1 22 16.92z"/></svg>
+                        <span>+880 1XXX-XXXXXX</span>
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                        <span>info@hajiwadudparts.com</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Business Hours</h4>
+                <ul class="footer-hours">
+                    <li>
+                        <span>Saturday – Thursday</span>
+                        <strong>9:00 AM – 8:00 PM</strong>
+                    </li>
+                    <li>
+                        <span>Friday</span>
+                        <strong class="closed-label">Closed</strong>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container footer-bottom-inner">
+                <p>&copy; 2026 Haji Wadud CNG &amp; Pick-up Parts. All rights reserved.</p>
+                <p>Built with excellence for quality service.</p>
             </div>
         </div>
     </footer>
