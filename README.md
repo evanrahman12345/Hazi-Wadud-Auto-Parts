@@ -123,7 +123,7 @@ A: Serial Number  |  B: Product Name  |  C: Wholesale Price  |  D: Retail/Sellin
 ```
 
 ### 2. WhatsApp Number
-Replace `8801XXXXXXXXX` with your real WhatsApp number (country code, no `+`):
+Replace `88015483159` with your real WhatsApp number (country code, no `+`):
 
 | File | Occurrences |
 |------|-------------|
