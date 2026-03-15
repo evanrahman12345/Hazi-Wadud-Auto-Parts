@@ -261,7 +261,7 @@ function render() {
                 </div>
             </div>
             <a
-                href="https://wa.me/8801XXXXXXXXX?text=${waText}"
+                href="https://wa.me/88015483159?text=${waText}"
                 class="card-wa-btn"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -341,7 +341,7 @@ function openModal(idx) {
     $('modalTitle').textContent  = p.name;
     $('modalWholesale').textContent = fmtPrice(p.wholesale);
     $('modalRetail').textContent    = fmtPrice(p.selling);
-    $('modalWaBtn').href = `https://wa.me/8801XXXXXXXXX?text=${waText}`;
+    $('modalWaBtn').href = `https://wa.me/88015483159?text=${waText}`;
 
     // Fav button state
     const favBtn = $('modalFavBtn');
