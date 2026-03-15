@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Haji Wadud Parts — CNG &amp; Pick-up Auto Parts in Bangladesh</title>
+    <meta name="description" content="Leading supplier of genuine CNG and pick-up vehicle parts in Comilla, Bangladesh. Wholesale &amp; retail prices on BAJAJ, VIRA, MAT, NACHI and more.">
+    <!-- Open Graph -->
+    <meta property="og:title" content="Haji Wadud CNG &amp; Pick-up Parts">
+    <meta property="og:description" content="Genuine CNG and pick-up auto parts. 500+ products in stock. Comilla, Bangladesh.">
+    <meta property="og:type" content="website">
+    <!-- Fonts preconnect for DM Serif Display + DM Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        /* ── INDEX-SPECIFIC STYLES ── */
+
+        /* Hero refinement */
+        .hero { min-height: 580px; }
+        @media (min-width: 768px)  { .hero { min-height: 640px; } }
+        @media (min-width: 1024px) { .hero { min-height: 700px; } }
+
+        /* Floating badge decoration */
+        .hero-badge-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: var(--space-5);
+        }
+        .hero-badge-line {
+            height: 1px;
+            width: 40px;
+            background: rgba(245,158,11,0.5);
+        }
+
+        /* Marquee brand scroller */
+        .brand-scroller {
+            overflow: hidden;
+            padding: var(--space-3) 0;
+            position: relative;
+        }
+        .brand-scroller::before,
+        .brand-scroller::after {
+            content: '';
+            position: absolute;
+            top: 0; bottom: 0;
+            width: 80px;
+            z-index: 2;
+        }
+        .brand-scroller::before { left: 0; background: linear-gradient(to right, var(--bg-muted), transparent); }
+        .brand-scroller::after  { right: 0; background: linear-gradient(to left, var(--bg-muted), transparent); }
+
+        .brand-track {
+            display: flex;
+            gap: var(--space-4);
+            width: max-content;
+            animation: brand-scroll 24s linear infinite;
+        }
+        .brand-track:hover { animation-play-state: paused; }
+
+        @keyframes brand-scroll {
+            0%   { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .brand-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 22px;
+            background: var(--bg-card);
+            border: 1.5px solid var(--border);
+            border-radius: var(--radius-full);
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--txt-muted);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            white-space: nowrap;
+            flex-shrink: 0;
+            transition: all var(--ease-fast);
+        }
+        .brand-badge::before { content: '●'; font-size: 6px; color: var(--clr-accent); }
+
+        /* Stats bar (horizontal strip below hero) */
+        .stats-strip {
+            background: var(--clr-primary);
+            padding: var(--space-5) 0;
+        }
+        .stats-strip-inner {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0;
+        }
+        .strip-stat {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: var(--space-3) var(--space-8);
+            border-right: 1px solid rgba(255,255,255,0.15);
+            color: #fff;
+            text-align: center;
+        }
+        .strip-stat:last-child { border-right: none; }
+        .strip-stat strong {
+            font-family: var(--font-display);
+            font-size: 1.6rem;
+            font-weight: 400;
+            color: var(--clr-accent-light);
+            line-height: 1;
+            margin-bottom: 4px;
+        }
+        .strip-stat span {
+            font-size: 0.72rem;
+            color: rgba(255,255,255,0.65);
+            text-transform: uppercase;
+            letter-spacing: 0.07em;
+            font-weight: 500;
+        }
+        @media (max-width: 480px) {
+            .strip-stat { padding: var(--space-3) var(--space-5); }
+            .strip-stat strong { font-size: 1.3rem; }
+        }
+
+        /* Process / How It Works */
+        .process-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--space-6);
+        }
+        @media (min-width: 640px)  { .process-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (min-width: 1024px) { .process-grid { grid-template-columns: repeat(4, 1fr); } }
+
+        .process-step {
+            position: relative;
+            padding: var(--space-6);
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            transition: all var(--ease-normal);
+        }
+        .process-step:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: var(--clr-accent); }
+
+        .step-number {
+            font-family: var(--font-display);
+            font-size: 3rem;
+            font-weight: 400;
+            color: var(--clr-primary-tint);
+            line-height: 1;
+            margin-bottom: var(--space-3);
+            /* Trick: stack behind text for watermark effect */
+        }
+        [data-theme="dark"] .step-number { color: rgba(45,90,160,0.18); }
+
+        .process-step h3 { font-size: 1.05rem; margin-bottom: var(--space-2); font-family: var(--font-body); font-weight: 600; }
+        .process-step p  { font-size: 0.88rem; color: var(--txt-muted); line-height: 1.65; }
+
+        /* Connector line between steps on desktop */
+        @media (min-width: 1024px) {
+            .process-step:not(:last-child)::after {
+                content: '→';
+                position: absolute;
+                right: -22px;
+                top: 50%;
+                transform: translateY(-50%);
+                color: var(--clr-accent);
+                font-size: 1.2rem;
+                z-index: 1;
+            }
+        }
+
+        /* Testimonial / trust block */
+        .trust-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-6);
+            align-items: center;
+            justify-content: center;
+            padding: var(--space-8);
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-xl);
+            text-align: center;
+        }
+        .trust-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--space-2);
+            min-width: 110px;
+        }
+        .trust-item .trust-icon {
+            width: 44px; height: 44px;
+            background: var(--clr-accent-tint);
+            border-radius: var(--radius-md);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.4rem;
+        }
+        .trust-item span { font-size: 0.8rem; color: var(--txt-muted); font-weight: 500; }
+    </style>
+</head>
+<body>
+
+    <!-- ===== NAVBAR ===== -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-inner">
+            <a href="index.html" class="logo" aria-label="Haji Wadud Parts — Home">
+                <span class="logo-primary">Haji Wadud</span>
+                <span class="logo-secondary">CNG &amp; Pick-up Parts</span>
+            </a>
+
+            <ul class="nav-menu" id="navMenu" role="list">
+                <li><a href="index.html"      class="nav-link active" aria-current="page">Home</a></li>
+                <li><a href="products.html"   class="nav-link">Products</a></li>
+                <li><a href="price-list.html" class="nav-link">Price List</a></li>
+                <li><a href="about.html"      class="nav-link">About Us</a></li>
+                <li><a href="contact.html"    class="nav-link">Contact</a></li>
+            </ul>
+
+            <div class="nav-controls">
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+                    <svg class="icon-sun"  viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+                    <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                </button>
+                <button class="hamburger" id="hamburger" aria-label="Open navigation menu" aria-expanded="false" aria-controls="navMenu">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero" aria-label="Welcome banner">
+        <div class="hero-bg-image" role="presentation" aria-hidden="true"></div>
+        <div class="hero-overlay" aria-hidden="true"></div>
+        <div class="container hero-content">
+            <div class="hero-text">
+                <div class="hero-badge-wrapper">
+                    <div class="hero-badge-line" aria-hidden="true"></div>
+                    <span class="badge">🏆 Trusted Since 2003</span>
+                    <div class="hero-badge-line" aria-hidden="true"></div>
+                </div>
+                <h1>
+                    <span class="accent-word">Premium</span> Auto Parts<br>
+                    for CNG &amp; Pick-up Vehicles
+                </h1>
+                <p class="hero-desc">
+                    Genuine parts from BAJAJ, VIRA, MAT, NACHI and more. Competitive wholesale &amp; retail prices for mechanics, dealers, and vehicle owners across Bangladesh.
+                </p>
+                <div class="hero-actions">
+                    <a href="products.html" class="btn btn-accent">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M20 7H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/><polyline points="16 3 12 7 8 3"/></svg>
+                        Browse Products
+                    </a>
+                    <a href="price-list.html" class="btn btn-outline-white">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                        View Price List
+                    </a>
+                </div>
+            </div>
+            <div class="hero-stats" aria-label="Key statistics">
+                <div class="stat-card">
+                    <span class="stat-number" aria-label="500 plus products">500+</span>
+                    <span class="stat-label">Products</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number" aria-label="100 percent genuine parts">100%</span>
+                    <span class="stat-label">Genuine</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number" aria-label="20 plus years active">20+</span>
+                    <span class="stat-label">Yrs Active</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== STATS STRIP ===== -->
+    <div class="stats-strip" aria-label="Quick stats">
+        <div class="container stats-strip-inner">
+            <div class="strip-stat">
+                <strong>500+</strong>
+                <span>Parts in Stock</span>
+            </div>
+            <div class="strip-stat">
+                <strong>10+</strong>
+                <span>Trusted Brands</span>
+            </div>
+            <div class="strip-stat">
+                <strong>20+</strong>
+                <span>Years Experience</span>
+            </div>
+            <div class="strip-stat">
+                <strong>Sat–Thu</strong>
+                <span>9 AM – 8 PM</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== WHY CHOOSE US ===== -->
+    <section class="section bg-white">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Our Advantages</span>
+                <h2>Why Choose Haji Wadud Parts</h2>
+                <p>Committed to providing the finest quality parts and service to our customers across Bangladesh</p>
+            </div>
+            <div class="grid-4">
+                <div class="feature-card">
+                    <div class="feature-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 12l2 2 4-4"/><path d="M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9 9 4.03 9 9z"/></svg>
+                    </div>
+                    <h3>Authentic Parts Only</h3>
+                    <p>Every product is sourced directly from authorized manufacturers. We guarantee 100% genuine, quality-tested components.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                    </div>
+                    <h3>Competitive Pricing</h3>
+                    <p>Best wholesale and retail prices in the market. Volume discounts available for regular dealers and mechanics.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 7L12 3 4 7m16 0l-8 4m0 0L4 7m8 4v10M4 7v10l8 4M20 7v10l-8 4"/></svg>
+                    </div>
+                    <h3>Large Inventory</h3>
+                    <p>Over 500 parts in stock — engine components, electrical parts, tires, bearings, lubricants and much more.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    </div>
+                    <h3>Expert Guidance</h3>
+                    <p>Our experienced staff help you identify exactly the right part for your vehicle — every time, without guesswork.</p>
+                </div>
+            </div>
+
+            <!-- Trust bar -->
+            <div class="trust-bar mt-10">
+                <div class="trust-item">
+                    <div class="trust-icon" aria-hidden="true">✅</div>
+                    <span>ISO Certified Parts</span>
+                </div>
+                <div class="trust-item">
+                    <div class="trust-icon" aria-hidden="true">🚚</div>
+                    <span>Fast Delivery</span>
+                </div>
+                <div class="trust-item">
+                    <div class="trust-icon" aria-hidden="true">🔒</div>
+                    <span>Warranty Backed</span>
+                </div>
+                <div class="trust-item">
+                    <div class="trust-icon" aria-hidden="true">💬</div>
+                    <span>24/7 WhatsApp</span>
+                </div>
+                <div class="trust-item">
+                    <div class="trust-icon" aria-hidden="true">🏆</div>
+                    <span>20+ Yrs Experience</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== HOW IT WORKS ===== -->
+    <section class="section bg-muted">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Simple Process</span>
+                <h2>How to Order From Us</h2>
+                <p>Getting the right parts for your vehicle has never been easier</p>
+            </div>
+            <div class="process-grid">
+                <div class="process-step">
+                    <div class="step-number" aria-hidden="true">01</div>
+                    <h3>Browse or Search</h3>
+                    <p>Use our products page or price list to find the exact part you need by name, serial, or category.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number" aria-hidden="true">02</div>
+                    <h3>Contact Us</h3>
+                    <p>Reach us via WhatsApp or phone with the part number and quantity. We confirm availability instantly.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number" aria-hidden="true">03</div>
+                    <h3>Get a Quote</h3>
+                    <p>Receive a clear wholesale or retail price — no hidden costs, no surprise fees. Transparent pricing always.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number" aria-hidden="true">04</div>
+                    <h3>Collect or Deliver</h3>
+                    <p>Pick up from our Comilla store or arrange delivery. Your parts are ready when you need them.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CATEGORIES ===== -->
+    <section class="section bg-white">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Product Categories</span>
+                <h2>Browse by Category</h2>
+                <p>Find parts across all major vehicle systems and component types</p>
+            </div>
+            <div class="categories-grid">
+                <a href="products.html?category=175" class="category-card">
+                    <span class="category-icon" aria-hidden="true">⚙️</span>
+                    <div class="category-body"><h3>175 Series</h3><p>Engine &amp; body components</p></div>
+                    <span class="category-arrow" aria-hidden="true">→</span>
+                </a>
+                <a href="products.html?category=205" class="category-card">
+                    <span class="category-icon" aria-hidden="true">🔧</span>
+                    <div class="category-body"><h3>205 Series</h3><p>BAJAJ, MAT, VIRA brands</p></div>
+                    <span class="category-arrow" aria-hidden="true">→</span>
+                </a>
+                <a href="products.html?category=225" class="category-card">
+                    <span class="category-icon" aria-hidden="true">🛠️</span>
+                    <div class="category-body"><h3>225 Series</h3><p>High-performance variants</p></div>
+                    <span class="category-arrow" aria-hidden="true">→</span>
+                </a>
+                <a href="products.html?category=electrical" class="category-card">
+                    <span class="category-icon" aria-hidden="true">⚡</span>
+                    <div class="category-body"><h3>Electrical Parts</h3><p>Ignition, wiring, sensors</p></div>
+                    <span class="category-arrow" aria-hidden="true">→</span>
+                </a>
+                <a href="products.html?category=bearings" class="category-card">
+                    <span class="category-icon" aria-hidden="true">🔩</span>
+                    <div class="category-body"><h3>Bearings</h3><p>NACHI, BBC, EBH, SQY</p></div>
+                    <span class="category-arrow" aria-hidden="true">→</span>
+                </a>
+                <a href="products.html?category=tires" class="category-card">
+                    <span class="category-icon" aria-hidden="true">🛞</span>
+                    <div class="category-body"><h3>Tires &amp; Tubes</h3><p>All sizes, top manufacturers</p></div>
+                    <span class="category-arrow" aria-hidden="true">→</span>
+                </a>
+                <a href="products.html?category=oils" class="category-card">
+                    <span class="category-icon" aria-hidden="true">🧴</span>
+                    <div class="category-body"><h3>Oils &amp; Lubricants</h3><p>Engine &amp; transmission oils</p></div>
+                    <span class="category-arrow" aria-hidden="true">→</span>
+                </a>
+                <a href="products.html" class="category-card">
+                    <span class="category-icon" aria-hidden="true">📦</span>
+                    <div class="category-body"><h3>View All Parts</h3><p>500+ products in catalog</p></div>
+                    <span class="category-arrow" aria-hidden="true">→</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== BRANDS (scrolling marquee) ===== -->
+    <section class="section bg-muted">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Trusted Brands</span>
+                <h2>We Stock Premium Brands</h2>
+                <p>Partnered with leading automotive manufacturers for guaranteed genuine quality</p>
+            </div>
+        </div>
+        <div class="brand-scroller" role="region" aria-label="Brand partners marquee">
+            <!-- Duplicate for seamless loop -->
+            <div class="brand-track" aria-hidden="true">
+                <div class="brand-badge">BAJAJ</div>
+                <div class="brand-badge">VIRA</div>
+                <div class="brand-badge">MAT</div>
+                <div class="brand-badge">NACHI</div>
+                <div class="brand-badge">VARROC</div>
+                <div class="brand-badge">ROLON</div>
+                <div class="brand-badge">IKON</div>
+                <div class="brand-badge">MGN</div>
+                <div class="brand-badge">PAVNA</div>
+                <div class="brand-badge">IKO</div>
+                <div class="brand-badge">EBH</div>
+                <div class="brand-badge">SQY</div>
+                <!-- Duplicate set for seamless loop -->
+                <div class="brand-badge">BAJAJ</div>
+                <div class="brand-badge">VIRA</div>
+                <div class="brand-badge">MAT</div>
+                <div class="brand-badge">NACHI</div>
+                <div class="brand-badge">VARROC</div>
+                <div class="brand-badge">ROLON</div>
+                <div class="brand-badge">IKON</div>
+                <div class="brand-badge">MGN</div>
+                <div class="brand-badge">PAVNA</div>
+                <div class="brand-badge">IKO</div>
+                <div class="brand-badge">EBH</div>
+                <div class="brand-badge">SQY</div>
+            </div>
+        </div>
+        <!-- Static fallback for screen readers -->
+        <div class="container" style="margin-top:var(--space-6);">
+            <ul class="sr-only" aria-label="Brand partners list">
+                <li>BAJAJ</li><li>VIRA</li><li>MAT</li><li>NACHI</li>
+                <li>VARROC</li><li>ROLON</li><li>IKON</li><li>MGN</li>
+                <li>PAVNA</li><li>IKO</li><li>EBH</li><li>SQY</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- ===== CTA ===== -->
+    <section class="cta-section" aria-label="Call to action">
+        <div class="container cta-inner">
+            <h2>Ready to Find Your Parts?</h2>
+            <p>Contact us today for quotes, availability checks, or visit our store in Comilla for immediate assistance.</p>
+            <div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center;">
+                <a href="contact.html" class="btn btn-white">Contact Us Now</a>
+                <a href="price-list.html" class="btn btn-outline-white">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" style="width:18px;height:18px;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                    Price List
+                </a>
+                <a href="https://wa.me/8801XXXXXXXXX?text=Hello%20Haji%20Wadud%20Parts!" class="btn btn-whatsapp" target="_blank" rel="noopener noreferrer">
+                    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="width:18px;height:18px;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                    WhatsApp Us
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="container footer-grid">
+            <div class="footer-col footer-brand-col">
+                <a href="index.html" class="logo footer-logo" aria-label="Haji Wadud Parts — Home">
+                    <span class="logo-primary">Haji Wadud</span>
+                    <span class="logo-secondary">CNG &amp; Pick-up Parts</span>
+                </a>
+                <p class="footer-tagline">Your trusted partner for genuine CNG and pick-up auto parts in Bangladesh since 2003.</p>
+            </div>
+
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="price-list.html">Price List</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Contact Info</h4>
+                <ul class="footer-contact-list">
+                    <li>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>
+                        <span>Comilla, Chittagong, Bangladesh</span>
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.1h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.71 2.81a2 2 0 0 1-.45 2.11L7.91 8.7A16 16 0 0 0 15.3 16l.95-.95a2 2 0 0 1 2.11-.45c.9.35 1.85.58 2.81.71A2 2 0 0 1 22 16.92z"/></svg>
+                        <!-- BUG FIX: plain mailto, no Cloudflare obfuscation -->
+                        <a href="tel:+8801XXXXXXXXX">+880 1XXX-XXXXXX</a>
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                        <a href="mailto:info@hajiwadudparts.com">info@hajiwadudparts.com</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Business Hours</h4>
+                <ul class="footer-hours">
+                    <li>
+                        <span>Saturday – Thursday</span>
+                        <strong>9:00 AM – 8:00 PM</strong>
+                    </li>
+                    <li>
+                        <span>Friday</span>
+                        <strong class="closed-label">Closed</strong>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container footer-bottom-inner">
+                <p>&copy; 2026 Haji Wadud CNG &amp; Pick-up Parts. All rights reserved.</p>
+                <p>Built with care for quality service.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- script.js first so debounce + favorites are available to products.js / price-list.js -->
+    <script src="script.js"></script>
+</body>
+</html>

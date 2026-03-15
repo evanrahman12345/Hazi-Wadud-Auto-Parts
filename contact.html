@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us — Haji Wadud CNG &amp; Pick-up Parts</title>
+    <meta name="description" content="Get in touch with Haji Wadud Parts for quotes, availability checks, or visit our store in Comilla, Bangladesh.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Real-time validation states */
+        .form-input.valid,.form-select.valid,.form-textarea.valid{border-color:var(--clr-success);}
+        .form-input.valid:focus,.form-textarea.valid:focus{box-shadow:0 0 0 3px rgba(5,150,105,0.12);}
+        .form-input.invalid,.form-textarea.invalid{border-color:var(--clr-error);}
+        .form-input.invalid:focus,.form-textarea.invalid:focus{box-shadow:0 0 0 3px rgba(239,68,68,0.12);}
+        .field-error{font-size:.78rem;color:var(--clr-error);margin-top:5px;display:none;align-items:center;gap:4px;}
+        .field-error.show{display:flex;}
+        .field-error svg{width:13px;height:13px;flex-shrink:0;}
+        .char-counter{font-size:.72rem;color:var(--txt-muted);text-align:right;margin-top:4px;transition:color var(--ease-fast);}
+        .char-counter.warn{color:var(--clr-warning);}
+        .char-counter.limit{color:var(--clr-error);font-weight:700;}
+        .btn-submit.loading{pointer-events:none;opacity:.8;}
+        .contact-info-item svg{color:var(--clr-accent);}
+        .hours-table{width:100%;border-collapse:collapse;margin-top:var(--space-3);font-size:.9rem;}
+        .hours-table tr{border-bottom:1px solid var(--border);}
+        .hours-table tr:last-child{border-bottom:none;}
+        .hours-table td{padding:8px 0;color:var(--txt-body);}
+        .hours-table td:last-child{text-align:right;font-weight:600;color:var(--txt-heading);}
+        .hours-table .closed{color:#f87171!important;}
+        .quick-actions{display:flex;flex-wrap:wrap;gap:var(--space-2);margin-bottom:var(--space-6);}
+        .quick-chip{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:var(--radius-full);border:1.5px solid var(--border);background:var(--bg-muted);font-size:.8rem;font-weight:600;color:var(--txt-muted);cursor:pointer;transition:all var(--ease-fast);text-decoration:none;}
+        .quick-chip:hover{border-color:var(--clr-accent);color:var(--clr-accent-dark);background:var(--clr-accent-tint);}
+        [data-theme="dark"] .quick-chip:hover{color:var(--clr-accent-light);}
+        .quick-chip svg{width:14px;height:14px;}
+        .form-section-label{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:var(--txt-muted);margin-bottom:var(--space-4);display:flex;align-items:center;gap:var(--space-3);}
+        .form-section-label::after{content:'';flex:1;height:1px;background:var(--border);}
+        .req{color:var(--clr-error);margin-left:2px;}
+    </style>
+</head>
+<body>
+    <nav class="navbar" id="navbar">
+        <div class="nav-inner">
+            <a href="index.html" class="logo" aria-label="Haji Wadud Parts — Home">
+                <span class="logo-primary">Haji Wadud</span>
+                <span class="logo-secondary">CNG &amp; Pick-up Parts</span>
+            </a>
+            <ul class="nav-menu" id="navMenu" role="list">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="products.html" class="nav-link">Products</a></li>
+                <li><a href="price-list.html" class="nav-link">Price List</a></li>
+                <li><a href="about.html" class="nav-link">About Us</a></li>
+                <li><a href="contact.html" class="nav-link active" aria-current="page">Contact</a></li>
+            </ul>
+            <div class="nav-controls">
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+                    <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+                    <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                </button>
+                <button class="hamburger" id="hamburger" aria-label="Open navigation menu" aria-expanded="false" aria-controls="navMenu">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <div class="container">
+            <h1>Contact Us</h1>
+            <p>Get in touch for quotes, availability checks, or visit our store in Comilla</p>
+        </div>
+    </header>
+
+    <main>
+        <div class="container contact-layout">
+
+            <aside class="contact-info-block">
+                <div>
+                    <h2 style="font-size:clamp(1.3rem,3vw,1.7rem);margin-bottom:var(--space-3);">Get In Touch</h2>
+                    <p class="contact-intro">Available Saturday through Thursday. Visit our Comilla store or send a message and we will respond within 24 hours.</p>
+                </div>
+
+                <div class="contact-info-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>
+                    <div><h4>Our Location</h4><p>Comilla, Chittagong<br>Bangladesh</p></div>
+                </div>
+
+                <div class="contact-info-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.1h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.71 2.81a2 2 0 0 1-.45 2.11L7.91 8.7A16 16 0 0 0 15.3 16l.95-.95a2 2 0 0 1 2.11-.45c.9.35 1.85.58 2.81.71A2 2 0 0 1 22 16.92z"/></svg>
+                    <div><h4>Phone</h4><p><a href="tel:+8801XXXXXXXXX" style="color:inherit;font-weight:600;">+880 1XXX-XXXXXX</a><br><span style="font-size:.82rem;color:var(--txt-muted);">During business hours</span></p></div>
+                </div>
+
+                <div class="contact-info-item">
+                    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="color:#25d366;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                    <div><h4>WhatsApp</h4><p><a href="https://wa.me/8801XXXXXXXXX" target="_blank" rel="noopener noreferrer" style="color:inherit;font-weight:600;">+880 1XXX-XXXXXX</a><br><span style="font-size:.82rem;color:var(--txt-muted);">Quick replies available</span></p></div>
+                </div>
+
+                <div class="contact-info-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                    <div><h4>Email</h4><p><a href="mailto:info@hajiwadudparts.com" style="color:inherit;font-weight:600;">info@hajiwadudparts.com</a><br><span style="font-size:.82rem;color:var(--txt-muted);">Response within 24 hours</span></p></div>
+                </div>
+
+                <div class="contact-info-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    <div style="width:100%;">
+                        <h4>Business Hours</h4>
+                        <table class="hours-table" aria-label="Business hours">
+                            <tr><td>Saturday - Thursday</td><td>9:00 AM - 8:00 PM</td></tr>
+                            <tr><td>Friday</td><td class="closed">Closed</td></tr>
+                        </table>
+                    </div>
+                </div>
+            </aside>
+
+            <div class="contact-form-card">
+                <div class="quick-actions" aria-label="Quick contact options">
+                    <a href="https://wa.me/8801XXXXXXXXX?text=I'd+like+a+price+quote" class="quick-chip" target="_blank" rel="noopener noreferrer">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                        Get a Quote
+                    </a>
+                    <a href="https://wa.me/8801XXXXXXXXX?text=I+want+to+check+part+availability" class="quick-chip" target="_blank" rel="noopener noreferrer">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M20 7H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/><polyline points="16 3 12 7 8 3"/></svg>
+                        Check Availability
+                    </a>
+                    <a href="price-list.html" class="quick-chip">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                        View Prices
+                    </a>
+                </div>
+
+                <p class="form-section-label">Send a Message</p>
+
+                <form class="contact-form" id="contactForm" novalidate>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label" for="contactName">Full Name <span class="req" aria-label="required">*</span></label>
+                            <input type="text" id="contactName" name="name" class="form-input" placeholder="Your full name" required autocomplete="name">
+                            <p class="field-error" id="nameError" role="alert">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                                Please enter your name.
+                            </p>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="contactEmail">Email Address <span class="req" aria-label="required">*</span></label>
+                            <input type="email" id="contactEmail" name="email" class="form-input" placeholder="your@email.com" required autocomplete="email">
+                            <p class="field-error" id="emailError" role="alert">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                                Please enter a valid email.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="contactPhone">Phone / WhatsApp <span style="font-size:.78rem;font-weight:400;color:var(--txt-muted);">(optional)</span></label>
+                        <input type="tel" id="contactPhone" name="phone" class="form-input" placeholder="+880 1XXX-XXXXXX" autocomplete="tel">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="contactSubject">Subject</label>
+                        <select id="contactSubject" name="subject" class="form-select">
+                            <option value="">Select a subject...</option>
+                            <option value="pricing">Pricing Inquiry</option>
+                            <option value="availability">Part Availability</option>
+                            <option value="wholesale">Wholesale Account</option>
+                            <option value="order">Place an Order</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="contactMessage">Message <span class="req" aria-label="required">*</span></label>
+                        <textarea id="contactMessage" name="message" class="form-textarea" rows="5" placeholder="How can we help? Include part numbers or vehicle details if relevant." required maxlength="1000"></textarea>
+                        <p class="char-counter" id="charCounter" aria-live="polite">0 / 1000</p>
+                        <p class="field-error" id="messageError" role="alert">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                            Please enter your message (min. 10 characters).
+                        </p>
+                    </div>
+
+                    <div style="display:flex;gap:10px;flex-wrap:wrap;">
+                        <button type="submit" class="btn btn-primary btn-submit" id="submitBtn" style="flex:1;min-width:180px;">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" style="width:17px;height:17px;"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                            Send via WhatsApp
+                        </button>
+                        <a href="https://wa.me/8801XXXXXXXXX" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp">
+                            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="width:17px;height:17px;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                            Chat Directly
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="map-section bg-muted">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">Find Us</span>
+                    <h2>Visit Our Store</h2>
+                    <p>Located in the heart of Comilla, easily accessible from across Chittagong division</p>
+                </div>
+                <div class="map-wrapper">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d58754.02821361647!2d91.14493845!3d23.4606809!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x37547f55827e0001%3A0xb8d0a2d7d5a5f3e3!2sComilla!5e0!3m2!1sen!2sbd!4v1234567890" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Haji Wadud Parts location in Comilla, Bangladesh"></iframe>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-grid">
+            <div class="footer-col footer-brand-col">
+                <a href="index.html" class="logo footer-logo" aria-label="Haji Wadud Parts — Home">
+                    <span class="logo-primary">Haji Wadud</span>
+                    <span class="logo-secondary">CNG &amp; Pick-up Parts</span>
+                </a>
+                <p class="footer-tagline">Your trusted partner for genuine CNG and pick-up auto parts in Bangladesh since 2003.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="price-list.html">Price List</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact Info</h4>
+                <ul class="footer-contact-list">
+                    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg><span>Comilla, Chittagong, Bangladesh</span></li>
+                    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.1h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.71 2.81a2 2 0 0 1-.45 2.11L7.91 8.7A16 16 0 0 0 15.3 16l.95-.95a2 2 0 0 1 2.11-.45c.9.35 1.85.58 2.81.71A2 2 0 0 1 22 16.92z"/></svg><a href="tel:+8801XXXXXXXXX">+880 1XXX-XXXXXX</a></li>
+                    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><a href="mailto:info@hajiwadudparts.com">info@hajiwadudparts.com</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Business Hours</h4>
+                <ul class="footer-hours">
+                    <li><span>Saturday - Thursday</span><strong>9:00 AM - 8:00 PM</strong></li>
+                    <li><span>Friday</span><strong class="closed-label">Closed</strong></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container footer-bottom-inner">
+                <p>&copy; 2026 Haji Wadud CNG &amp; Pick-up Parts. All rights reserved.</p>
+                <p>Built with care for quality service.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+    (function(){'use strict';
+        var nameEl=document.getElementById('contactName'),emailEl=document.getElementById('contactEmail'),msgEl=document.getElementById('contactMessage'),counterEl=document.getElementById('charCounter'),submitBtn=document.getElementById('submitBtn');
+        function setV(el){el.classList.add('valid');el.classList.remove('invalid');}
+        function setI(el){el.classList.add('invalid');el.classList.remove('valid');}
+        function clr(el){el.classList.remove('valid','invalid');}
+        function showErr(id,s){var e=document.getElementById(id);if(e)e.classList.toggle('show',s);}
+        function isEmail(v){return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);}
+        if(nameEl){nameEl.addEventListener('blur',function(){var ok=nameEl.value.trim().length>=2;ok?setV(nameEl):setI(nameEl);showErr('nameError',!ok&&nameEl.value.trim().length>0);});nameEl.addEventListener('input',function(){if(nameEl.classList.contains('invalid')&&nameEl.value.trim().length>=2){setV(nameEl);showErr('nameError',false);}});}
+        if(emailEl){emailEl.addEventListener('blur',function(){var ok=isEmail(emailEl.value.trim());ok?setV(emailEl):(emailEl.value?setI(emailEl):clr(emailEl));showErr('emailError',!!emailEl.value&&!ok);});emailEl.addEventListener('input',function(){if(emailEl.classList.contains('invalid')&&isEmail(emailEl.value.trim())){setV(emailEl);showErr('emailError',false);}});}
+        if(msgEl&&counterEl){msgEl.addEventListener('input',function(){var len=msgEl.value.length;counterEl.textContent=len+' / 1000';counterEl.classList.toggle('warn',len>800&&len<=950);counterEl.classList.toggle('limit',len>950);if(msgEl.classList.contains('invalid')&&len>=10){setV(msgEl);showErr('messageError',false);}});msgEl.addEventListener('blur',function(){var ok=msgEl.value.trim().length>=10;ok?setV(msgEl):(msgEl.value?setI(msgEl):clr(msgEl));showErr('messageError',!!msgEl.value&&!ok);});}
+        var form=document.getElementById('contactForm');
+        if(form){form.addEventListener('submit',function(e){e.preventDefault();var name=nameEl?nameEl.value.trim():'',email=emailEl?emailEl.value.trim():'',phone=document.getElementById('contactPhone')?document.getElementById('contactPhone').value.trim():'',subject=document.getElementById('contactSubject')?document.getElementById('contactSubject').value:'',message=msgEl?msgEl.value.trim():'';var err=false;if(name.length<2){setI(nameEl);showErr('nameError',true);err=true;}if(!isEmail(email)){setI(emailEl);showErr('emailError',true);err=true;}if(message.length<10){setI(msgEl);showErr('messageError',true);err=true;}if(err){var first=document.querySelector('.form-input.invalid,.form-textarea.invalid');if(first)first.focus();if(typeof showToast==='function')showToast('Please fix the errors above.','error');return;}if(submitBtn){submitBtn.classList.add('loading');submitBtn.textContent='Opening WhatsApp...';}var sub=subject?'Subject: '+subject+'\n':'';var waMsg='Hello Haji Wadud Parts!\n\nName: '+name+'\nEmail: '+email+(phone?'\nPhone: '+phone:'')+'\n'+sub+'\nMessage:\n'+message;window.open('https://wa.me/8801XXXXXXXXX?text='+encodeURIComponent(waMsg),'_blank','noopener,noreferrer');e.target.reset();[nameEl,emailEl,msgEl].forEach(function(el){if(el)clr(el);});if(counterEl)counterEl.textContent='0 / 1000';if(submitBtn){submitBtn.classList.remove('loading');submitBtn.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="width:17px;height:17px;"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Send via WhatsApp';}if(typeof showToast==='function')showToast('Redirecting to WhatsApp...');});}}
+    )();
+    </script>
+</body>
+</html>
