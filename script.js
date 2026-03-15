@@ -381,7 +381,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             const waMsg = `Hello Haji Wadud Parts!\n\nName: ${name}\nEmail: ${email}${phone ? '\nPhone: ' + phone : ''}\n\nMessage: ${message}`;
-            const waUrl = `https://wa.me/8801712345678?text=${encodeURIComponent(waMsg)}`;
+            const waUrl = `https://wa.me/8801815483159?text=${encodeURIComponent(waMsg)}`;
             window.open(waUrl, '_blank', 'noopener,noreferrer');
             contactForm.reset();
             showToast('✓ Redirecting to WhatsApp…');
@@ -402,7 +402,7 @@ document.addEventListener('DOMContentLoaded', () => {
     /* ── 13. WHATSAPP FLOAT BUTTON ── */
     if (!document.querySelector('.whatsapp-float')) {
         const wa = document.createElement('a');
-        wa.href      = 'https://wa.me/8801712345678?text=Hello%20Haji%20Wadud%20Parts!';
+        wa.href      = 'https://wa.me/8801815483159?text=Hello%20Haji%20Wadud%20Parts!';
         wa.className = 'whatsapp-float';
         wa.target    = '_blank';
         wa.rel       = 'noopener noreferrer';
