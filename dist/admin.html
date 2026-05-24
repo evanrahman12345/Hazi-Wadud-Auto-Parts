@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard — Haji Wadud CNG &amp; Pick-up Parts</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+    <style>
+        .admin-container {
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 24px;
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border);
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--txt-heading);
+        }
+        .form-group input {
+            width: 100%;
+            padding: 10px 14px;
+            border: 1px solid var(--border-strong);
+            border-radius: var(--radius-md);
+            background: var(--bg-base);
+            color: var(--txt-body);
+            font-family: var(--font-body);
+        }
+        .form-group input:focus {
+            outline: 2px solid var(--clr-accent);
+            border-color: var(--clr-accent);
+        }
+        .admin-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .save-btn {
+            width: 100%;
+            margin-top: 10px;
+        }
+    </style>
+  <script type="module" crossorigin src="/assets/admin-CkIM4Hl3.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/config-D22Y-frg.js">
+  <link rel="stylesheet" crossorigin href="/assets/config-CuWILMN1.css">
+</head>
+<body>
+    <nav class="navbar" id="navbar">
+        <div class="nav-inner">
+            <a href="index.html" class="logo" aria-label="Haji Wadud Parts — Home">
+                <span class="logo-primary">Haji Wadud</span>
+                <span class="logo-secondary">CNG &amp; Pick-up Parts</span>
+            </a>
+            <ul class="nav-menu" id="navMenu" role="list">
+                <li><a href="index.html"      class="nav-link">Home</a></li>
+                <li><a href="products.html"   class="nav-link">Products</a></li>
+                <li><a href="price-list.html" class="nav-link">Price List</a></li>
+                <li><a href="about.html"      class="nav-link">About Us</a></li>
+                <li><a href="contact.html"    class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="section">
+        <div class="admin-container">
+            <div id="loginSection">
+                <div class="admin-header">
+                    <h2>Admin Login</h2>
+                    <p>Enter your credentials to access the configuration</p>
+                </div>
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="loginEmail">Email Address</label>
+                        <input type="email" id="loginEmail" required placeholder="admin@hajiwadudparts.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Password</label>
+                        <input type="password" id="loginPassword" required placeholder="••••••••">
+                    </div>
+                    <button type="submit" class="btn btn-primary save-btn">Login</button>
+                    <p id="loginError" style="color: var(--clr-error); font-size: 0.85rem; text-align: center; margin-top: 10px; display: none;">Invalid email or password.</p>
+                </form>
+            </div>
+
+            <div id="adminSection" style="display: none;">
+                <div class="admin-header">
+                    <h2>Store Configuration</h2>
+                    <p>Update your local store settings</p>
+                </div>
+                <form id="adminForm">
+                    <div class="form-group">
+                        <label for="storeAddress">Store Address</label>
+                        <input type="text" id="storeAddress" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="storePhone">Contact Phone</label>
+                        <input type="text" id="storePhone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="storeEmail">Support Email</label>
+                        <input type="email" id="storeEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="storeCsv">Google Sheets CSV URL</label>
+                        <input type="url" id="storeCsv" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary save-btn">Save Configuration</button>
+                    <button type="button" id="logoutBtn" class="btn btn-outline-white save-btn" style="margin-top: 15px;">Logout</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+</body>
+</html>
